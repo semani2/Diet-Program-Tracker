@@ -12,6 +12,12 @@ import io.reactivex.Flowable
     fun getAllLogs(date: String): Flowable<List<Log>>
 
     /**
+     * Get's a particular log by id
+     */
+    @Query("SELECT * FROM Log WHERE id = :id")
+    fun getLog(id: Long): Flowable<Log>
+
+    /**
      * Inserts a new log item
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
