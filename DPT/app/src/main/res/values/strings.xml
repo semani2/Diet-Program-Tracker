@@ -9,4 +9,10 @@
     <string name="add_log_fat_hint">Coconut oil, butter, etc</string>
     <string name="add_log_liquid_hint">Soup, soda, etc</string>
     <string name="add_log_quantity_hint">1, 2, 3&#8230;</string>
+    <string name="add_log_food">Food</string>
+    <string name="add_log_water">Water</string>
+    <string name="add_log_lime_lemon">Lime / Lemon</string>
+    <string name="add_log_multivitamin">Multivitamin</string>
+    <string name="add_log_fat">Fat</string>
+    <string name="add_log_liquid">Liquid</string>
 </resources>

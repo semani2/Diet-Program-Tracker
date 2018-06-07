@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.chithalabs.sai.dietprogramtracker.R
-import com.chithalabs.sai.dietprogramtracker.R.id.add_log_fab
 import com.chithalabs.sai.dietprogramtracker.add_log.AddLogActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
