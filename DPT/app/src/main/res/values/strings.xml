@@ -5,6 +5,10 @@
     <string name="add_log_what_did_u_drink">What did you drink?</string>
     <string name="add_log_how_much_did_u_eat">How much did you eat?</string>
     <string name="add_log_how_much_did_u_drink">How much did you drink?</string>
+    <string name="add_log_what_did_u_consume">What did you consume?</string>
+    <string name="add_log_how_much_did_u_consume">How much did you consume?</string>
+    <string name="add_log_how_many_did_u_eat">How many did you eat?</string>
+    <string name="add_log_how_many_did_u_take">How many did you take?</string>
     <string name="add_log_meal_hint">Curry, omelette, etc</string>
     <string name="add_log_fat_hint">Coconut oil, butter, etc</string>
     <string name="add_log_liquid_hint">Soup, soda, etc</string>
@@ -15,4 +19,7 @@
     <string name="add_log_multivitamin">Multivitamin</string>
     <string name="add_log_fat">Fat</string>
     <string name="add_log_liquid">Liquid</string>
+    <string name="add_log_save">Save</string>
+    <string name="add_log_water_hint">In ml&#8230;</string>
+    <string name="add_log_fat_hint_quantity">In mg&#8230;</string>
 </resources>
