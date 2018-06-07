@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Diet Program Tracker</string>
+
+    <string name="add_log_what_did_u_eat">What did you eat?</string>
+    <string name="add_log_what_did_u_drink">What did you drink?</string>
+    <string name="add_log_how_much_did_u_eat">How much did you eat?</string>
+    <string name="add_log_how_much_did_u_drink">How much did you drink?</string>
+    <string name="add_log_meal_hint">Curry, omelette, etc</string>
+    <string name="add_log_fat_hint">Coconut oil, butter, etc</string>
+    <string name="add_log_liquid_hint">Soup, soda, etc</string>
+    <string name="add_log_quantity_hint">1, 2, 3&#8230;</string>
 </resources>

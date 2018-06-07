@@ -9,6 +9,7 @@ data class Log(
         var date: String,
         var desc: String,
         var quantity: Float?,
+        var unit: String,
         var type: String
 )
 
