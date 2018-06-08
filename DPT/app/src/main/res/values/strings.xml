@@ -22,4 +22,13 @@
     <string name="add_log_save">Save</string>
     <string name="add_log_water_hint">In ml&#8230;</string>
     <string name="add_log_fat_hint_quantity">In mg&#8230;</string>
+
+    <string name="add_new_log">Add new log</string>
+    <string name="log_added">Yay! log added successfully!</string>
+
+    <string name="add_log_food_error">Please add a valid food item.</string>
+    <string name="add_log_fat_error">Please enter a valid fat source</string>
+    <string name="add_log_number_quantity_error">Please enter a valid quantity</string>
+    <string name="add_log_number_quantity_error_mg">Please enter a valid quantity in mg (milligrams)</string>
+    <string name="add_log_number_quantity_error_ml">Please enter a valid quantity in ml (milliliters)</string>
 </resources>

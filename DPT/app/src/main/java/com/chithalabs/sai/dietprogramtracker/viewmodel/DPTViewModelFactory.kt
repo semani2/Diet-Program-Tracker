@@ -14,6 +14,7 @@ import javax.inject.Singleton
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(HomeActivity::class.java) -> LogCollectionViewModel(repository) as T
+            modelClass.isAssignableFrom(AddLogViewModel::class.java) -> AddLogViewModel(repository) as T
             else -> throw IllegalArgumentException("ViewModel not found for class" + modelClass.simpleName)
         }
     }

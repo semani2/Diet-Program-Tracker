@@ -24,6 +24,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun goToAddLog(@LogType logType: String) {
+        add_fab.collapse()
+        
         val intent = Intent(this, AddLogActivity::class.java)
         intent.putExtra(PARAM_LOG_TYPE, logType)
 
