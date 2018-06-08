@@ -7,7 +7,7 @@ import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.*
 
-val dptDateFormat: SimpleDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())
+val dptDateFormat: SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
 val dptTimeFormat: SimpleDateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
 
 fun Date.dptDate(): String {

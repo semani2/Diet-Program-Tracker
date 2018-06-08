@@ -39,4 +39,7 @@
     <string name="log_drank_water">You drank %1$.2f ml of water.</string>
     <string name="log_had_lime">You had %1$.2f lime / lemon.</string>
     <string name="log_had_multivitamin">You took %1$.2f unit(s) of multivitamins.</string>
+
+    <string name="home_title_text">Hi Sai, Here is your progress for today!</string>
+    <string name="home_no_logs">You have not added any logs for today. Get started by clicking on the + icon.</string>
 </resources>

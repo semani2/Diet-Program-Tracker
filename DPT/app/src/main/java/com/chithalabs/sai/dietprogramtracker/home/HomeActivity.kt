@@ -7,6 +7,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.chithalabs.sai.dietprogramtracker.*
 import com.chithalabs.sai.dietprogramtracker.adapters.LogAdapter
 import com.chithalabs.sai.dietprogramtracker.add_log.AddLogActivity
@@ -60,11 +61,24 @@ class HomeActivity : AppCompatActivity() {
         android.util.Log.d(TAG, "Log list observer called")
 
         list?.let {
+            if (it.isEmpty()) {
+                toggleListVisibility(false)
+                return
+            }
+
             listOfLogs.clear()
             listOfLogs.addAll(it.toList())
+
             log_recycler_view.layoutManager = LinearLayoutManager(this)
+            toggleListVisibility(true)
         }
 
+    }
+
+    private fun toggleListVisibility(listVisible: Boolean) {
+        empty_logs_layout.visibility = if (listVisible) View.GONE else View.VISIBLE
+        log_recycler_view.visibility = if (listVisible) View.VISIBLE else View.GONE
+        title_text_view.visibility = if (listVisible) View.VISIBLE else View.GONE
     }
 
     private fun goToAddLog(@LogType logType: String) {
