@@ -31,8 +31,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         fab:fab_labelStyle="@style/menu_labels_style"
-        app:fab_addButtonColorNormal="@color/colorAccent"
-        app:>
+        app:fab_addButtonColorNormal="@color/colorAccent">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/action_meal"
