@@ -6,7 +6,7 @@ import io.reactivex.Flowable
 @Dao interface LogDao {
 
     /**
-     * Gets all log data for date
+     * Gets all log data for datePickerListener
      */
     @Query("SELECT * FROM Log WHERE date = :date")
     fun getAllLogs(date: String): Flowable<List<Log>>

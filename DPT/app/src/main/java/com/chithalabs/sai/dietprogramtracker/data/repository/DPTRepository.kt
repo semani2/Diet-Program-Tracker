@@ -26,7 +26,7 @@ import javax.inject.Singleton
         logDao.getAllLogs(date).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ logList -> mutableLiveData.value = logList}, {
-                    t: Throwable? -> android.util.Log.e(TAG, "Error getting logs for date", t)
+                    t: Throwable? -> android.util.Log.e(TAG, "Error getting logs for datePickerListener", t)
                 })
 
         return mutableLiveData
@@ -39,7 +39,7 @@ import javax.inject.Singleton
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ log -> mutableLiveData.value = log}, {
-                    t: Throwable? -> android.util.Log.e(TAG, "Error getting logs for date", t)
+                    t: Throwable? -> android.util.Log.e(TAG, "Error getting logs for datePickerListener", t)
                 })
 
         return mutableLiveData

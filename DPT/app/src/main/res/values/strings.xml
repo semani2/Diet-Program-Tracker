@@ -40,6 +40,13 @@
     <string name="log_had_lime">You had %1$.2f lime / lemon.</string>
     <string name="log_had_multivitamin">You took %1$.2f unit(s) of multivitamins.</string>
 
-    <string name="home_title_text">Hi Sai, Here is your progress for today!</string>
-    <string name="home_no_logs">You have not added any logs for today. Get started by clicking on the + icon.</string>
+    <string name="home_title_text">Hi Sai, Here is your progress for %1$s!</string>
+    <string name="home_no_logs_today">You have not added any logs for today. Get started by clicking on the + icon.</string>
+    <string name="home_no_logs">You have not added any logs for %1$s.</string>
+
+    <string name="menu_select_date">Select date</string>
+    <string name="menu_send_feedback">Send feedback</string>
+    <string name="menu_clear_all_logs">Clear all logs</string>
+
+    <string name="str_today">today</string>
 </resources>

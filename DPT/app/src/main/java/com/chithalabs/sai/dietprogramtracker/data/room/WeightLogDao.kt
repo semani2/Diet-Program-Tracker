@@ -6,7 +6,7 @@ import io.reactivex.Flowable
 @Dao interface WeightLogDao {
 
     /**
-     * Gets all weight log data for date
+     * Gets all weight log data for datePickerListener
      */
     @Query("SELECT * FROM WeightLog WHERE date = :date")
     fun getAllWeightLogs(date: String): Flowable<List<WeightLog>>
