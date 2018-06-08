@@ -8,11 +8,15 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 val dptDateFormat: SimpleDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())
+val dptTimeFormat: SimpleDateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
 
 fun Date.dptDate(): String {
     return dptDateFormat.format(this)
 }
 
+fun Date.dptTime(): String {
+    return dptTimeFormat.format(this)
+}
 /* Extensions for Views */
 fun View.visible(): Unit {
     this.visibility = View.VISIBLE

@@ -10,6 +10,10 @@ import java.util.*
 class LogCollectionViewModel(private val logRepository: IDPTRepository): ViewModel() {
 
     fun getLogsForToday(): LiveData<List<Log>> {
-        return logRepository.getAllLogs(Date().dptDate()!!)
+        return getLogsForDate(Date().dptDate())
+    }
+
+    fun getLogsForDate(date: String): LiveData<List<Log>> {
+        return logRepository.getAllLogs(date)
     }
 }

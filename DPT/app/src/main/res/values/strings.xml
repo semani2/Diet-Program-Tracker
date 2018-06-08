@@ -31,4 +31,12 @@
     <string name="add_log_number_quantity_error">Please enter a valid quantity</string>
     <string name="add_log_number_quantity_error_mg">Please enter a valid quantity in mg (milligrams)</string>
     <string name="add_log_number_quantity_error_ml">Please enter a valid quantity in ml (milliliters)</string>
+
+    <string name="log_desc_food">You ate %1$s.</string>
+    <string name="log_desc_liquid">You drank %1$s.</string>
+    <string name="log_desc_had">You had %1$.2f ml of %2$s.</string>
+    <string name="log_desc_took">You took %1$.2f %2$s.</string>
+    <string name="log_drank_water">You drank %1$.2f ml of water.</string>
+    <string name="log_had_lime">You had %1$.2f lime / lemon.</string>
+    <string name="log_had_multivitamin">You took %1$.2f unit(s) of multivitamins.</string>
 </resources>

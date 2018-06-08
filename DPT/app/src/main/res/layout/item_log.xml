@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="40dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    card_view:cardCornerRadius="20dp"
+    android:layout_margin="3dp"
+    card_view:cardElevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/log_type_image_view"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            tools:src="@drawable/lime" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp">
+            <TextView
+                android:id="@+id/log_desc_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                tools:text="You drank 5 liters of water. What about one more line and one more."
+                android:gravity="end"
+                android:textColor="@color/colorPrimaryText"
+                android:ellipsize="middle" />
+
+            <TextView
+                android:id="@+id/log_time_stamp_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="08:23"
+                android:padding="3dp"
+                android:textStyle="italic"
+                android:layout_gravity="end"
+                android:textColor="@color/colorSecondaryText"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

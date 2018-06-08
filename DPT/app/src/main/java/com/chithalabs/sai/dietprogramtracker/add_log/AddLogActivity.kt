@@ -155,12 +155,11 @@ class AddLogActivity : AppCompatActivity() {
                     return
                 }
 
-                com.chithalabs.sai.dietprogramtracker.data.room.Log(0,
-                        Date().dptDate(),
-                        add_log_what_edit_text.text.toString().trim(),
-                        0f,
-                        null,
-                        mLogType)
+                com.chithalabs.sai.dietprogramtracker.data.room.Log(
+                        id = 0,
+                        desc = add_log_what_edit_text.text.toString().trim(),
+                        type = mLogType
+                )
             }
             LIQUID -> {
                 if (add_log_what_edit_text.isEmpty()) {
@@ -169,12 +168,11 @@ class AddLogActivity : AppCompatActivity() {
                     return
                 }
 
-                com.chithalabs.sai.dietprogramtracker.data.room.Log(0,
-                        Date().dptDate(),
-                        add_log_what_edit_text.text.toString().trim(),
-                        0f,
-                        null,
-                        mLogType)
+                com.chithalabs.sai.dietprogramtracker.data.room.Log(
+                        id = 0,
+                        desc = add_log_what_edit_text.text.toString().trim(),
+                        type = mLogType
+                )
             }
             FAT -> {
                 if (add_log_what_edit_text.isEmpty()) {
@@ -189,12 +187,13 @@ class AddLogActivity : AppCompatActivity() {
                     return
                 }
 
-                com.chithalabs.sai.dietprogramtracker.data.room.Log(0,
-                        Date().dptDate(),
-                        add_log_what_edit_text.text.toString().trim(),
-                        add_log_how_edit_text.text.toString().trim().toFloatOrNull(),
-                        MG_UNIT,
-                        mLogType)
+                com.chithalabs.sai.dietprogramtracker.data.room.Log(
+                        id = 0,
+                        desc = add_log_what_edit_text.text.toString().trim(),
+                        quantity = add_log_how_edit_text.text.toString().trim().toFloatOrNull(),
+                        unit = MG_UNIT,
+                        type = mLogType
+                )
             }
             WATER -> {
                 if (!add_log_how_edit_text.isValidNumber()) {
@@ -203,12 +202,13 @@ class AddLogActivity : AppCompatActivity() {
                     return
                 }
 
-                com.chithalabs.sai.dietprogramtracker.data.room.Log(0,
-                        Date().dptDate(),
-                        WATER,
-                        add_log_how_edit_text.text.toString().trim().toFloatOrNull(),
-                        ML_UNIT,
-                        mLogType)
+                com.chithalabs.sai.dietprogramtracker.data.room.Log(
+                        id = 0,
+                        desc = WATER,
+                        quantity = add_log_how_edit_text.text.toString().trim().toFloatOrNull(),
+                        unit = ML_UNIT,
+                        type = mLogType
+                )
             }
             LIME -> {
                 if (!add_log_how_edit_text.isValidNumber()) {
@@ -217,12 +217,13 @@ class AddLogActivity : AppCompatActivity() {
                     return
                 }
 
-                com.chithalabs.sai.dietprogramtracker.data.room.Log(0,
-                        Date().dptDate(),
-                        LIME,
-                        add_log_how_edit_text.text.toString().trim().toFloatOrNull(),
-                        UNIT,
-                        mLogType)
+                com.chithalabs.sai.dietprogramtracker.data.room.Log(
+                        id = 0,
+                        desc = LIME,
+                        quantity = add_log_how_edit_text.text.toString().trim().toFloatOrNull(),
+                        unit = UNIT,
+                        type = mLogType
+                )
             }
             MULTIVITAMINS -> {
                 if (!add_log_how_edit_text.isValidNumber()) {
@@ -231,12 +232,13 @@ class AddLogActivity : AppCompatActivity() {
                     return
                 }
 
-                com.chithalabs.sai.dietprogramtracker.data.room.Log(0,
-                        Date().dptDate(),
-                        MULTIVITAMIN,
-                        add_log_how_edit_text.text.toString().trim().toFloatOrNull(),
-                        UNIT,
-                        mLogType)
+                com.chithalabs.sai.dietprogramtracker.data.room.Log(
+                        id = 0,
+                        desc = MULTIVITAMIN,
+                        quantity = add_log_how_edit_text.text.toString().trim().toFloatOrNull(),
+                        unit = UNIT,
+                        type = mLogType
+                )
             }
             else -> {
                 null
