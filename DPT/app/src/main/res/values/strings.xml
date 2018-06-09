@@ -51,4 +51,6 @@
     <string name="str_today">today</string>
     <string name="str_goal_progress">Goal Progress</string>
 
+    <string name="str_log_deleted">Your log has been deleted.</string>
+
 </resources>

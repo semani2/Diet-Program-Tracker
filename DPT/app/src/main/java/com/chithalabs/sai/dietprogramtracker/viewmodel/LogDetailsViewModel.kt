@@ -10,4 +10,8 @@ class LogDetailsViewModel(private val logRepository: IDPTRepository): ViewModel(
     fun getLogsForDateAndType(date: String, logType: String): LiveData<List<Log>> {
         return logRepository.getAllLogs(date, logType)
     }
+
+    fun deleteLogItem(log: Log) {
+        logRepository.deleteLog(log)
+    }
 }

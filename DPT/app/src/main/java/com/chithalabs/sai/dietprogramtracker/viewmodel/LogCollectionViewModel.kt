@@ -16,4 +16,8 @@ class LogCollectionViewModel(private val logRepository: IDPTRepository): ViewMod
     fun getLogsForDate(date: String): LiveData<List<Log>> {
         return logRepository.getAllLogs(date)
     }
+
+    fun deleteLogItem(log: Log) {
+        return logRepository.deleteLog(log)
+    }
 }
