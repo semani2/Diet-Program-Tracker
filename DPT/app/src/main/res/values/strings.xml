@@ -52,5 +52,15 @@
     <string name="str_goal_progress">Goal Progress</string>
 
     <string name="str_log_deleted">Your log has been deleted.</string>
+    <string name="str_your_water_goal">Water goal (In ml)</string>
+    <string name="str_your_fat_goal">Fat goal (In mg)</string>
+    <string name="str_your_lime_goal">Lime goal</string>
+    <string name="str_your_multivitamin_goal">Multivitamin goal</string>
+    <string name="str_1_2">1, 2...</string>
+    <string name="str_settings">Settings</string>
+
+    <string name="settings_save">Save</string>
+    <string name="settings_cancel">Cancel</string>
+    <string name="settings">Settings</string>
 
 </resources>

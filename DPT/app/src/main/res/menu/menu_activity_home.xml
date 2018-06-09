@@ -8,14 +8,19 @@
         android:id="@+id/menu_select_day_action"
         android:orderInCategory="1"/>
 
+    <item android:title="@string/str_settings"
+        app:showAsAction="never"
+        android:id="@+id/menu_settings"
+        android:orderInCategory="2"/>
+
     <item android:title="@string/menu_send_feedback"
         app:showAsAction="never"
         android:id="@+id/menu_send_feedback"
-        android:orderInCategory="2"/>
+        android:orderInCategory="3"/>
 
     <item android:title="@string/menu_clear_all_logs"
         app:showAsAction="never"
         android:id="@+id/menu_clear_all_logs"
-        android:orderInCategory="3"/>
+        android:orderInCategory="4"/>
 
 </menu>

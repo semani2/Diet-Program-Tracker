@@ -1,6 +1,7 @@
 package com.chithalabs.sai.dietprogramtracker.di
 
 import android.app.Application
+import com.chithalabs.sai.dietprogramtracker.services.SettingsService
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -9,5 +10,9 @@ import javax.inject.Singleton
 
     @Provides @Singleton fun provideApplication() : Application {
         return dptApplication
+    }
+
+    @Provides @Singleton fun provideSettingsService(): SettingsService {
+        return SettingsService(dptApplication)
     }
 }

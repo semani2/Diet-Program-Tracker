@@ -1,6 +1,7 @@
 package com.chithalabs.sai.dietprogramtracker.home
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
@@ -20,11 +21,16 @@ import com.chithalabs.sai.dietprogramtracker.viewmodel.LogCollectionViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.text.TextUtils
+import android.view.ContextThemeWrapper
+import android.widget.EditText
 import android.widget.Toast
 import com.chithalabs.sai.dietprogramtracker.log_details.LogDetailsActivity
+import com.chithalabs.sai.dietprogramtracker.services.SettingsService
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
@@ -41,12 +47,15 @@ class HomeActivity : AppCompatActivity() {
     @Inject
     lateinit var viewmodelFactory: ViewModelProvider.Factory
 
+    @Inject
+    lateinit var settingsService: SettingsService
+
     private lateinit var viewmodel: LogCollectionViewModel
     private lateinit var adapter: LogAdapter
 
     private var mDate = Date().dptDate()
 
-    val datePickerListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+    private val datePickerListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
         loadLogs(String.format("%s-%s-%s", DECIMAL_FORMAT.format(dayOfMonth), DECIMAL_FORMAT.format(monthOfYear + 1), DECIMAL_FORMAT.format(year)))
     }
 
@@ -96,6 +105,12 @@ class HomeActivity : AppCompatActivity() {
                 showDatePicker()
                 true
             }
+
+            R.id.menu_settings -> {
+                showSettingsDialog()
+                true
+            }
+
             R.id.menu_send_feedback -> {
                 // TODO:: Not implemented
                 true
@@ -106,6 +121,52 @@ class HomeActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showSettingsDialog() {
+        val builder = AlertDialog.Builder(ContextThemeWrapper(this, android.R.style.Theme_Material_Light_Dialog))
+
+        val view = layoutInflater.inflate(R.layout.layout_settings_dialog, null)
+        val savedWaterGoal = settingsService.getWaterGoal()
+        view.findViewById<EditText>(R.id.water_goal_edit_text).setText(savedWaterGoal)
+        view.findViewById<EditText>(R.id.water_goal_edit_text).setSelection(savedWaterGoal.length)
+
+        val savedFatGoal = settingsService.getFatGoal()
+        view.findViewById<EditText>(R.id.fat_goal_edit_text).setText(savedFatGoal)
+        view.findViewById<EditText>(R.id.fat_goal_edit_text).setSelection(savedFatGoal.length)
+
+        val savedLimeGoal = settingsService.getLimeGoal().toString()
+        view.findViewById<EditText>(R.id.lime_goal_edit_text).setText(savedLimeGoal)
+        view.findViewById<EditText>(R.id.lime_goal_edit_text).setSelection(savedLimeGoal.length)
+
+        val savedMVGoal = settingsService.getMultiVitaminGoal().toString()
+        view.findViewById<EditText>(R.id.multivitamin_goal_edit_text).setText(savedMVGoal)
+        view.findViewById<EditText>(R.id.multivitamin_goal_edit_text).setSelection(savedMVGoal.length)
+
+        builder.setView(view)
+                .setTitle(getString(R.string.settings))
+                .setCancelable(false)
+                .setIcon(R.drawable.ic_buttery_round)
+                .setPositiveButton(R.string.settings_save, { dialog, _ ->
+                    val waterGoal = view.findViewById<EditText>(R.id.water_goal_edit_text).text.toString()
+                    val finalWaterGoal = if (TextUtils.isEmpty(waterGoal)) DEFAULT_WATER_GOAL else waterGoal.toLong()
+
+                    val fatGoal = view.findViewById<EditText>(R.id.fat_goal_edit_text).text.toString()
+                    val finalFatGoal = if (TextUtils.isEmpty(waterGoal)) DEFAULT_FAT_GOAL else fatGoal.toLong()
+
+                    val limeGoal = view.findViewById<EditText>(R.id.lime_goal_edit_text).text.toString()
+                    val finalLimeGoal = if (TextUtils.isEmpty(limeGoal)) DEFAULT_LIME_GOAL else limeGoal.toInt()
+
+                    val mvGoal = view.findViewById<EditText>(R.id.multivitamin_goal_edit_text).text.toString()
+                    val finalMVGoal = if (TextUtils.isEmpty(limeGoal)) DEFAULT_MULTIVITAMIN_GOAL else mvGoal.toInt()
+
+                    settingsService.saveSettings(finalWaterGoal, finalFatGoal, finalLimeGoal, finalMVGoal)
+
+                    dialog.cancel()
+                })
+                .setNegativeButton(R.string.settings_cancel, { dialog, _ -> dialog.cancel() })
+        val dialog = builder.create()
+        dialog.show()
     }
 
     private fun showDatePicker() {

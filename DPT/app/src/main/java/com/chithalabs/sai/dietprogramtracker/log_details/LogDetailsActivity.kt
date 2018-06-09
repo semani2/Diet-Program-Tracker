@@ -16,6 +16,7 @@ import com.chithalabs.sai.dietprogramtracker.*
 import com.chithalabs.sai.dietprogramtracker.adapters.LogAdapter
 import com.chithalabs.sai.dietprogramtracker.data.room.Log
 import com.chithalabs.sai.dietprogramtracker.di.DPTApplication
+import com.chithalabs.sai.dietprogramtracker.services.SettingsService
 import com.chithalabs.sai.dietprogramtracker.viewmodel.LogDetailsViewModel
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -33,6 +34,9 @@ class LogDetailsActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewmodelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var settingsService: SettingsService
 
     private lateinit var viewmodel: LogDetailsViewModel
     private lateinit var adapter: LogAdapter
@@ -111,7 +115,7 @@ class LogDetailsActivity : AppCompatActivity() {
             }
             WATER -> {
                 progress_layout.visibility = View.VISIBLE
-                val totalQuantity = "4000 ml"
+                val totalQuantity = String.format("%s ml", settingsService.getWaterGoal())
                 var progress = 0f
 
                 list?.let {
@@ -123,7 +127,7 @@ class LogDetailsActivity : AppCompatActivity() {
             }
             FAT -> {
                 progress_layout.visibility = View.VISIBLE
-                val totalQuantity = "70 mg"
+                val totalQuantity = String.format("%s mg", settingsService.getFatGoal())
                 var progress = 0f
 
                 list?.let {
@@ -135,7 +139,7 @@ class LogDetailsActivity : AppCompatActivity() {
             }
             LIME -> {
                 progress_layout.visibility = View.VISIBLE
-                val totalQuantity = "4"
+                val totalQuantity = String.format("%d", settingsService.getLimeGoal())
                 var progress = 0f
 
                 list?.let {
@@ -147,7 +151,7 @@ class LogDetailsActivity : AppCompatActivity() {
             }
             MULTIVITAMINS -> {
                 progress_layout.visibility = View.VISIBLE
-                val totalQuantity = "1"
+                val totalQuantity = String.format("%d", settingsService.getMultiVitaminGoal())
                 var progress = 0
 
                 list?.let {
