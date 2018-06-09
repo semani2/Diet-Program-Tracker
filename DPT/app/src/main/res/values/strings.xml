@@ -49,4 +49,6 @@
     <string name="menu_clear_all_logs">Clear all logs</string>
 
     <string name="str_today">today</string>
+    <string name="str_goal_progress">Goal Progress</string>
+
 </resources>

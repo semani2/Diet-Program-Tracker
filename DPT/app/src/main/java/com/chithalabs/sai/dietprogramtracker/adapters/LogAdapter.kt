@@ -1,5 +1,6 @@
 package com.chithalabs.sai.dietprogramtracker.adapters
 
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.chithalabs.sai.dietprogramtracker.*
 import com.chithalabs.sai.dietprogramtracker.data.room.Log
+import io.reactivex.subjects.PublishSubject
 
 class LogAdapter(private var logList: MutableList<Log>): RecyclerView.Adapter<LogAdapter.LogViewHolder>(){
+    val mClickSubject: PublishSubject<Log> = PublishSubject.create()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LogViewHolder {
         val v: View = LayoutInflater.from(parent.context).inflate(R.layout.item_log, parent, false)
         return LogViewHolder(v)
@@ -21,6 +25,8 @@ class LogAdapter(private var logList: MutableList<Log>): RecyclerView.Adapter<Lo
 
     override fun onBindViewHolder(holder: LogViewHolder, position: Int) {
         val log = logList[position]
+
+        holder.cardView.setOnClickListener({ mClickSubject.onNext(log) })
 
         when (log.type) {
             FOOD -> {
@@ -56,16 +62,22 @@ class LogAdapter(private var logList: MutableList<Log>): RecyclerView.Adapter<Lo
         }
     }
 
+    fun onItemClickEvent(): PublishSubject<Log> {
+        return mClickSubject
+    }
+
 
     class LogViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var logTypeImageView: ImageView
         var logDescTextView: TextView
         var logTimeStampTextView: TextView
+        var cardView: CardView
 
         init {
             logTypeImageView = itemView.findViewById(R.id.log_type_image_view)
             logDescTextView = itemView.findViewById(R.id.log_desc_text_view)
             logTimeStampTextView = itemView.findViewById(R.id.log_time_stamp_text_view)
+            cardView = itemView.findViewById(R.id.card_view)
         }
     }
 }

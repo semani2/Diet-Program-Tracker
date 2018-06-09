@@ -1,5 +1,6 @@
 package com.chithalabs.sai.dietprogramtracker.home
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
@@ -19,6 +20,10 @@ import com.chithalabs.sai.dietprogramtracker.viewmodel.LogCollectionViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 import android.app.DatePickerDialog
+import com.chithalabs.sai.dietprogramtracker.log_details.LogDetailsActivity
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
+import io.reactivex.schedulers.Schedulers
 import java.util.*
 
 
@@ -40,6 +45,7 @@ class HomeActivity : AppCompatActivity() {
         loadLogs(String.format("%s-%s-%s", DECIMAL_FORMAT.format(dayOfMonth), DECIMAL_FORMAT.format(monthOfYear + 1), DECIMAL_FORMAT.format(year)))
     }
 
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -61,6 +67,10 @@ class HomeActivity : AppCompatActivity() {
                 .get(LogCollectionViewModel::class.java)
 
         initRecyclerView()
+
+        adapter.onItemClickEvent().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ log -> goToLogDetails(mDate, log.type) })
 
         loadLogs(mDate)
     }
@@ -159,6 +169,14 @@ class HomeActivity : AppCompatActivity() {
 
         val intent = Intent(this, AddLogActivity::class.java)
         intent.putExtra(PARAM_LOG_TYPE, logType)
+
+        startActivity(intent)
+    }
+
+    private fun goToLogDetails(date:String, @LogType logType: String) {
+        val intent = Intent(this, LogDetailsActivity::class.java)
+        intent.putExtra(PARAM_LOG_TYPE, logType)
+        intent.putExtra(PARAM_DATE, date)
 
         startActivity(intent)
     }

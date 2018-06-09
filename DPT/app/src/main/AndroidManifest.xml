@@ -10,20 +10,22 @@
         android:roundIcon="@drawable/ic_buttery_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".home.HomeActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden">
+        <activity
+            android:name=".home.HomeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".add_log.AddLogActivity"
+        <activity
+            android:name=".add_log.AddLogActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:parentActivityName=".home.HomeActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden" ></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".log_details.LogDetailsActivity"></activity>
     </application>
 
 </manifest>

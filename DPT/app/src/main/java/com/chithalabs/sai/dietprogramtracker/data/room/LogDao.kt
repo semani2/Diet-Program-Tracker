@@ -28,4 +28,7 @@ import io.reactivex.Flowable
      */
     @Delete
     fun deleteLog(log: Log)
+
+    @Query("SELECT * FROM Log WHERE date = :date AND type = :type")
+    fun getAllLogs(date:String, type: String): Flowable<List<Log>>
 }

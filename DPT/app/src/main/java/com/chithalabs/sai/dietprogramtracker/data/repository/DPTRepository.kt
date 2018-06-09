@@ -61,6 +61,18 @@ import javax.inject.Singleton
                 .subscribe({android.util.Log.d(TAG, "Log deleted successfully!")})
     }
 
+    @SuppressLint("CheckResult")
+    override fun getAllLogs(date: String, logType: String): LiveData<List<Log>> {
+        val mutableLiveData = MutableLiveData<List<Log>>()
+        logDao.getAllLogs(date, logType).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ logList -> mutableLiveData.value = logList}, {
+                    t: Throwable? -> android.util.Log.e(TAG, "Error getting logs for datePickerListener", t)
+                })
+
+        return mutableLiveData
+    }
+
     override fun getAllWeightLogs(date: String): LiveData<List<WeightLog>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
