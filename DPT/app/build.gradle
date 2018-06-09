@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'io.fabric'
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -60,7 +62,14 @@ dependencies {
     // Floating action button
     implementation 'com.getbase:floatingactionbutton:1.10.1'
 
+    // Firebase
+    compile 'com.google.firebase:firebase-core:16.0.0'
+
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.3'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+
+apply plugin: 'com.google.gms.google-services'

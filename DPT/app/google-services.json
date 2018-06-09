@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "705905591757",
+    "firebase_url": "https://buttery-diet-tracker.firebaseio.com",
+    "project_id": "buttery-diet-tracker",
+    "storage_bucket": "buttery-diet-tracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705905591757:android:39c110c529d778b6",
+        "android_client_info": {
+          "package_name": "com.chithalabs.sai.dietprogramtracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "705905591757-r54qjp33qugeomon88c5rhk1kenjjg85.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chithalabs.sai.dietprogramtracker",
+            "certificate_hash": "eaf5d135ae5f8c33898cd8d68d655bc6cbe2d670"
+          }
+        },
+        {
+          "client_id": "705905591757-e3kukm2dfuisr4mmv4drns6tdcq6ctag.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "705905591757-e3kukm2dfuisr4mmv4drns6tdcq6ctag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXQ8ZhfCae3oEZnejkgDGmgWyjSw2tmIA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "705905591757-e3kukm2dfuisr4mmv4drns6tdcq6ctag.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
