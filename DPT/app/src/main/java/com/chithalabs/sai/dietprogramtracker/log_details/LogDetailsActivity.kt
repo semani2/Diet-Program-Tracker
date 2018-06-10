@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.Toast
 import com.chithalabs.sai.dietprogramtracker.*
 import com.chithalabs.sai.dietprogramtracker.adapters.LogAdapter
+import com.chithalabs.sai.dietprogramtracker.data.room.ILog
 import com.chithalabs.sai.dietprogramtracker.data.room.Log
 import com.chithalabs.sai.dietprogramtracker.di.DPTApplication
 import com.chithalabs.sai.dietprogramtracker.services.SettingsService
@@ -30,7 +31,7 @@ class LogDetailsActivity : AppCompatActivity() {
 
     private val TAG = LogDetailsActivity::class.java.simpleName
 
-    private val listOfLogs: MutableList<Log> = mutableListOf()
+    private val listOfLogs: MutableList<ILog> = mutableListOf()
 
     @Inject
     lateinit var viewmodelFactory: ViewModelProvider.Factory

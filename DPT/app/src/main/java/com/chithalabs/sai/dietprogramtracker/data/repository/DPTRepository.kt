@@ -77,11 +77,18 @@ import javax.inject.Singleton
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    @SuppressLint("CheckResult")
     override fun addWeightLog(weightLog: WeightLog) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Completable.fromAction({weightLogDao.insertLog(weightLog)})
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ android.util.Log.d(TAG, "New weight log inserted")})
     }
 
     override fun deleteWeightLog(weightLog: WeightLog) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Completable.fromAction({weightLogDao.deleteLog(weightLog)})
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({android.util.Log.d(TAG, "Weight Log deleted successfully!")})
     }
 }

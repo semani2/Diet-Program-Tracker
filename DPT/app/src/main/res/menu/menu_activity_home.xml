@@ -8,6 +8,10 @@
         android:id="@+id/menu_select_day_action"
         android:orderInCategory="1"/>
 
+    <item android:title="@string/str_open_log_weight"
+        app:showAsAction="never"
+        android:id="@+id/menu_log_weight" />
+
     <item android:title="@string/str_settings"
         app:showAsAction="never"
         android:id="@+id/menu_settings"

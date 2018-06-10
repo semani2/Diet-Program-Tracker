@@ -8,9 +8,10 @@ const val FAT = "fat"
 const val WATER = "water"
 const val LIME = "lime"
 const val MULTIVITAMINS = "multi_vitamins"
+const val WEIGHT = "weight"
 
 @Retention(AnnotationRetention.SOURCE)
-@StringDef(FOOD, LIQUID, FAT, WATER, LIME, MULTIVITAMINS)
+@StringDef(FOOD, LIQUID, FAT, WATER, LIME, MULTIVITAMINS, WEIGHT)
 annotation class LogType
 
 

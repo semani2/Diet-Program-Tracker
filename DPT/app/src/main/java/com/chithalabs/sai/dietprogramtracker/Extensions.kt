@@ -41,3 +41,12 @@ fun EditText.isValidNumber(): Boolean {
 fun Activity.showToast(msg: String): Unit {
     Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 }
+
+/* Extensions on Float */
+fun Float.convertToKg(): Float {
+    return this * 0.453592f
+}
+
+fun Float.convertToPounds(): Float {
+    return this * 2.20462f
+}

@@ -29,6 +29,7 @@ import android.text.TextUtils
 import android.view.ContextThemeWrapper
 import android.widget.EditText
 import android.widget.Toast
+import com.chithalabs.sai.dietprogramtracker.data.room.ILog
 import com.chithalabs.sai.dietprogramtracker.log_details.LogDetailsActivity
 import com.chithalabs.sai.dietprogramtracker.services.SettingsService
 import io.reactivex.Completable
@@ -42,7 +43,7 @@ class HomeActivity : AppCompatActivity() {
 
     private val TAG: String = HomeActivity::class.java.simpleName
 
-    private val listOfLogs: MutableList<Log> = mutableListOf()
+    private val listOfLogs: MutableList<ILog> = mutableListOf()
 
     @Inject
     lateinit var viewmodelFactory: ViewModelProvider.Factory
@@ -55,7 +56,7 @@ class HomeActivity : AppCompatActivity() {
 
     private var mDate = Date().dptDate()
 
-    private val datePickerListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+    private val datePickerListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
         loadLogs(String.format("%s-%s-%s", DECIMAL_FORMAT.format(dayOfMonth), DECIMAL_FORMAT.format(monthOfYear + 1), DECIMAL_FORMAT.format(year)))
     }
 
@@ -67,11 +68,11 @@ class HomeActivity : AppCompatActivity() {
         (application as DPTApplication).getApplicationComponent().inject(this)
 
         action_meal.setOnClickListener({ goToAddLog(FOOD) })
-        action_liquid.setOnClickListener({ goToAddLog(LIQUID) })
         action_fat.setOnClickListener({ goToAddLog(FAT) })
         action_water.setOnClickListener({ goToAddLog(WATER) })
         action_lime.setOnClickListener({ goToAddLog(LIME) })
         action_multi_vitamin.setOnClickListener({ goToAddLog(MULTIVITAMINS) })
+        action_weight.setOnClickListener({ goToAddLog(WEIGHT)})
 
         if (savedInstanceState != null && savedInstanceState.containsKey(PARAM_DATE)) {
             mDate = savedInstanceState.getString(PARAM_DATE)
@@ -84,7 +85,7 @@ class HomeActivity : AppCompatActivity() {
 
         adapter.onItemClickEvent().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ log -> goToLogDetails(mDate, log.type) })
+                .subscribe({ log -> goToLogDetails(mDate, (log as? Log)?.type ?: WEIGHT) })
 
         loadLogs(mDate)
     }

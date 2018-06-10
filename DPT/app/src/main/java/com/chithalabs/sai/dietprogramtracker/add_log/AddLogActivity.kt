@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.chithalabs.sai.dietprogramtracker.*
+import com.chithalabs.sai.dietprogramtracker.data.room.WeightLog
 import com.chithalabs.sai.dietprogramtracker.di.DPTApplication
 import com.chithalabs.sai.dietprogramtracker.viewmodel.AddLogViewModel
 import kotlinx.android.synthetic.main.activity_add_log.*
@@ -128,6 +129,18 @@ class AddLogActivity : AppCompatActivity() {
 
                 icon_image_view.setImageDrawable(resources.getDrawable(R.drawable.proteins, null))
             }
+            WEIGHT -> {
+                add_log_what_text_view.gone()
+                add_log_what_edit_text.gone()
+
+                select_unit_layout.visible()
+                add_log_how_text_view.visible()
+                add_log_how_edit_text.visible()
+
+                add_log_how_text_view.text = getString(R.string.add_log_weight_title)
+
+                icon_image_view.setImageDrawable(resources.getDrawable(R.drawable.scale, null))
+            }
         }
     }
 
@@ -240,6 +253,31 @@ class AddLogActivity : AppCompatActivity() {
                         type = mLogType
                 )
             }
+
+            WEIGHT -> {
+                if (!add_log_how_edit_text.isValidNumber()) {
+                    add_log_how_edit_text.error = getString(R.string.add_log_weight_invalid)
+                    add_log_how_edit_text.requestFocus()
+                    return
+                }
+
+                val enteredWeight = add_log_how_edit_text.text.toString().trim().toFloat()
+
+                var convertedWeight = if (kg_radio_button.isChecked) {
+                    enteredWeight.convertToPounds()
+                } else {
+                    enteredWeight.convertToKg()
+                }
+
+                val weightLog = WeightLog (
+                        id = 0,
+                        weightInKgs = if (kg_radio_button.isChecked) enteredWeight else convertedWeight,
+                        weightInLbs = if (kg_radio_button.isChecked) convertedWeight else enteredWeight
+                )
+                addLogViewModel.addNewWeightLog(weightLog)
+                showToast(getString(R.string.str_weight_log_added))
+                null
+            }
             else -> {
                 null
             }
@@ -248,7 +286,7 @@ class AddLogActivity : AppCompatActivity() {
         log?.let {
             addLogViewModel.addNewLog(it)
             showToast(getString(R.string.log_added))
-            finish()
         }
+        finish()
     }
 }

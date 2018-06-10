@@ -22,6 +22,8 @@
     <string name="add_log_save">Save</string>
     <string name="add_log_water_hint">In ml&#8230;</string>
     <string name="add_log_fat_hint_quantity">In mg&#8230;</string>
+    <string name="add_log_weight">Weight</string>
+    <string name="add_log_weight_title">What is your weight?</string>
 
     <string name="add_new_log">Add new log</string>
     <string name="log_added">Yay! log added successfully!</string>
@@ -31,6 +33,7 @@
     <string name="add_log_number_quantity_error">Please enter a valid quantity</string>
     <string name="add_log_number_quantity_error_mg">Please enter a valid quantity in mg (milligrams)</string>
     <string name="add_log_number_quantity_error_ml">Please enter a valid quantity in ml (milliliters)</string>
+    <string name="add_log_weight_invalid">Please enter your weight</string>
 
     <string name="log_desc_food">You ate %1$s.</string>
     <string name="log_desc_liquid">You drank %1$s.</string>
@@ -39,6 +42,7 @@
     <string name="log_drank_water">You drank %1$.2f ml of water.</string>
     <string name="log_had_lime">You had %1$.2f lime / lemon.</string>
     <string name="log_had_multivitamin">You took %1$.2f unit(s) of multivitamins.</string>
+    <string name="log_desc_weight">Your weight is %1$.2f %2$s</string>
 
     <string name="home_title_text">Hi Sai, Here is your progress for %1$s!</string>
     <string name="home_no_logs_today">You have not added any logs for today. Get started by clicking on the + icon.</string>
@@ -62,5 +66,11 @@
     <string name="settings_save">Save</string>
     <string name="settings_cancel">Cancel</string>
     <string name="settings">Settings</string>
+    <string name="str_log_weight">Log weight</string>
+    <string name="str_open_log_weight">My weight</string>
+    <string name="str_select_unit">Select unit</string>
+    <string name="str_kilograms_kg">Kilograms (kgs)</string>
+    <string name="str_pounds_lbs">Pounds (lbs)</string>
 
+    <string name="str_weight_log_added">Yay! Weight log added.</string>
 </resources>

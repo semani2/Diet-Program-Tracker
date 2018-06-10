@@ -15,7 +15,7 @@ data class Log(
         var quantity: Float? = null,
         var unit: String? = null,
         var type: String
-)
+): ILog
 
 
 
