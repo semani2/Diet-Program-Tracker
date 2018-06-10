@@ -73,4 +73,8 @@
     <string name="str_pounds_lbs">Pounds (lbs)</string>
 
     <string name="str_weight_log_added">Yay! Weight log added.</string>
+    <string name="str_your_weight">Your weight</string>
+    <string name="str_no_weight_log">You have not logged your weight yet!</string>
+
+    <string name="weight_details_activity_title">Weight Log</string>
 </resources>

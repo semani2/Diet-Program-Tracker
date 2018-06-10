@@ -8,8 +8,8 @@ import io.reactivex.Flowable
     /**
      * Gets all weight log data for datePickerListener
      */
-    @Query("SELECT * FROM WeightLog WHERE date = :date")
-    fun getAllWeightLogs(date: String): Flowable<List<WeightLog>>
+    @Query("SELECT * FROM WeightLog")
+    fun getAllWeightLogs(): Flowable<List<WeightLog>>
 
     /**
      * Inserts a new weight log item

@@ -16,7 +16,7 @@ interface IDPTRepository {
 
     fun getAllLogs(date: String, logType: String): LiveData<List<Log>>
 
-    fun getAllWeightLogs(date: String): LiveData<List<WeightLog>>
+    fun getAllWeightLogs(): LiveData<List<WeightLog>>
 
     fun addWeightLog(weightLog: WeightLog)
 

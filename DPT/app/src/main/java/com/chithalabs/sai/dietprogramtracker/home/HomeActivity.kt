@@ -32,6 +32,7 @@ import android.widget.Toast
 import com.chithalabs.sai.dietprogramtracker.data.room.ILog
 import com.chithalabs.sai.dietprogramtracker.log_details.LogDetailsActivity
 import com.chithalabs.sai.dietprogramtracker.services.SettingsService
+import com.chithalabs.sai.dietprogramtracker.weight_details.WeightDetailsActivity
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
@@ -104,6 +105,12 @@ class HomeActivity : AppCompatActivity() {
         return when (item!!.itemId) {
             R.id.menu_select_day_action -> {
                 showDatePicker()
+                true
+            }
+
+            R.id.menu_log_weight -> {
+                val intent = Intent(this, WeightDetailsActivity::class.java)
+                startActivity(intent)
                 true
             }
 
@@ -214,7 +221,7 @@ class HomeActivity : AppCompatActivity() {
             }
 
             listOfLogs.clear()
-            listOfLogs.addAll(it.toList())
+            listOfLogs.addAll(it.toList().reversed())
 
             log_recycler_view.layoutManager = LinearLayoutManager(this)
             toggleListVisibility(true)
@@ -243,6 +250,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun goToLogDetails(date:String, @LogType logType: String) {
+        if (logType.contentEquals(WEIGHT)) {
+            startActivity(Intent(this, WeightDetailsActivity::class.java))
+            return
+        }
+
         val intent = Intent(this, LogDetailsActivity::class.java)
         intent.putExtra(PARAM_LOG_TYPE, logType)
         intent.putExtra(PARAM_DATE, date)

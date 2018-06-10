@@ -25,7 +25,8 @@
             android:configChanges="orientation|keyboardHidden"
             android:parentActivityName=".home.HomeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".log_details.LogDetailsActivity"></activity>
+        <activity android:name=".log_details.LogDetailsActivity" />
+        <activity android:name=".weight_details.WeightDetailsActivity"></activity>
     </application>
 
 </manifest>

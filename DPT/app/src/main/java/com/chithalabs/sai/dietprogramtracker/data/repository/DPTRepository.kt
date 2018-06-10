@@ -73,8 +73,15 @@ import javax.inject.Singleton
         return mutableLiveData
     }
 
-    override fun getAllWeightLogs(date: String): LiveData<List<WeightLog>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getAllWeightLogs(): LiveData<List<WeightLog>> {
+        val mutableLiveData = MutableLiveData<List<WeightLog>>()
+        weightLogDao.getAllWeightLogs().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ logList -> mutableLiveData.value = logList}, {
+                    t: Throwable? -> android.util.Log.e(TAG, "Error getting weight logs", t)
+                })
+
+        return mutableLiveData
     }
 
     @SuppressLint("CheckResult")

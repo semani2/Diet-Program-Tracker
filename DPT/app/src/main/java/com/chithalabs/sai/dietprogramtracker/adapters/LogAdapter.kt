@@ -67,7 +67,7 @@ class LogAdapter(private var logList: MutableList<ILog>): RecyclerView.Adapter<L
         else if (log is WeightLog){
             holder.logTypeImageView.setImageDrawable(holder.logTypeImageView.context.getDrawable(R.drawable.scale))
             holder.logDescTextView.text = holder.logDescTextView.context.getString(R.string.log_desc_weight, log.weightInKgs, "kgs")
-            holder.logTimeStampTextView.text = log.time
+            holder.logTimeStampTextView.text = String.format("%s, %s", log.date, log.time)
         }
     }
 

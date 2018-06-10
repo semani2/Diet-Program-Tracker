@@ -16,6 +16,7 @@ import javax.inject.Singleton
             modelClass.isAssignableFrom(LogCollectionViewModel::class.java) -> LogCollectionViewModel(repository) as T
             modelClass.isAssignableFrom(AddLogViewModel::class.java) -> AddLogViewModel(repository) as T
             modelClass.isAssignableFrom(LogDetailsViewModel::class.java) -> LogDetailsViewModel(repository) as T
+            modelClass.isAssignableFrom(WeightDetailsViewModel::class.java) -> WeightDetailsViewModel(repository) as T
             else -> throw Throwable("ViewModel not found for class" + modelClass.simpleName)
         }
     }

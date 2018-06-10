@@ -255,7 +255,7 @@ class AddLogActivity : AppCompatActivity() {
             }
 
             WEIGHT -> {
-                if (!add_log_how_edit_text.isValidNumber()) {
+                if (!add_log_how_edit_text.isValidWeight()) {
                     add_log_how_edit_text.error = getString(R.string.add_log_weight_invalid)
                     add_log_how_edit_text.requestFocus()
                     return

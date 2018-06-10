@@ -4,6 +4,7 @@ import android.app.Application
 import com.chithalabs.sai.dietprogramtracker.add_log.AddLogActivity
 import com.chithalabs.sai.dietprogramtracker.home.HomeActivity
 import com.chithalabs.sai.dietprogramtracker.log_details.LogDetailsActivity
+import com.chithalabs.sai.dietprogramtracker.weight_details.WeightDetailsActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -15,6 +16,8 @@ import javax.inject.Singleton
     fun inject(activity: AddLogActivity)
 
     fun inject(activity: LogDetailsActivity)
+
+    fun inject(activity: WeightDetailsActivity)
 
     fun application() : Application
 }

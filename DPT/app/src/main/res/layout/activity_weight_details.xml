@@ -13,24 +13,25 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/progress_layout"
+        android:src="@drawable/scale"
+        app:layout_constraintEnd_toStartOf="@+id/weight_progress_layout"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_buttery_round" />
+        tools:src="@drawable/scale" />
 
     <LinearLayout
-        android:id="@+id/progress_layout"
+        android:id="@+id/weight_progress_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/log_details_recycler_view"
+        app:layout_constraintBottom_toTopOf="@+id/weight_log_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -38,23 +39,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/str_goal_progress"
+            android:text="@string/str_your_weight"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="28sp" />
 
         <TextView
-            android:id="@+id/progress_text_view"
+            android:id="@+id/weight_progress_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/colorSecondaryText"
             android:textSize="20sp"
-            tools:text="1000 ml / 4000 ml" />
+            tools:text="70.0 kgs" />
     </LinearLayout>
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/log_details_recycler_view"
+        android:id="@+id/weight_log_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -70,7 +71,7 @@
         app:reverseLayout="true"/>
 
     <LinearLayout
-        android:id="@+id/empty_logs_layout_details"
+        android:id="@+id/empty_weight_logs_layout_details"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -96,6 +97,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textSize="16sp"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:text="@string/str_no_weight_log"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

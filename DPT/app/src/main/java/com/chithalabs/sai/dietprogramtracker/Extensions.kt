@@ -36,6 +36,14 @@ fun EditText.isValidNumber(): Boolean {
     }
 }
 
+fun EditText.isValidWeight(): Boolean {
+    val v = this.text.toString().toFloatOrNull()
+    return when (v) {
+        null -> false
+        else -> true
+    }
+}
+
 
 /* Extensions on Activity */
 fun Activity.showToast(msg: String): Unit {
