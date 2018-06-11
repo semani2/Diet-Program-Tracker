@@ -62,6 +62,17 @@ import javax.inject.Singleton
     }
 
     @SuppressLint("CheckResult")
+    override fun deleteAllLogs() {
+        Completable.fromAction({
+            logDao.deleteAllLogs()
+            logDao.deleteAllWeightLogs()
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({android.util.Log.d(TAG, "Log deleted successfully!")})
+    }
+
+    @SuppressLint("CheckResult")
     override fun getAllLogs(date: String, logType: String): LiveData<List<Log>> {
         val mutableLiveData = MutableLiveData<List<Log>>()
         logDao.getAllLogs(date, logType).subscribeOn(Schedulers.io())

@@ -81,4 +81,5 @@
     <string name="str_lbs">Lbs</string>
 
     <string name="str_sorry_no_mail">Sorry! you have no app to send out an email.</string>
+    <string name="str_are_you_sure">Are you sure you want to delete all your data?</string>
 </resources>

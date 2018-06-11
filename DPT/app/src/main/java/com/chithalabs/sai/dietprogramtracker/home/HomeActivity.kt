@@ -127,11 +127,27 @@ class HomeActivity : AppCompatActivity() {
                 true
             }
             R.id.menu_clear_all_logs -> {
-                // TODO:: Not implemented
+                showDeleteAllDialog()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showDeleteAllDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(getString(R.string.str_are_you_sure))
+        builder.setCancelable(false)
+        builder.setPositiveButton(android.R.string.ok, { dialog, _ ->
+            viewmodel.deleteAllLogs()
+            dialog.dismiss()
+        })
+        builder.setNegativeButton(android.R.string.cancel, { dialog, _ ->
+            dialog.dismiss()
+        })
+
+        val dialog = builder.create()
+        dialog.show()
     }
 
     private fun launchFeedbackIntent() {

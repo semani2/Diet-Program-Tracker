@@ -84,12 +84,13 @@ class WeightDetailsActivity : AppCompatActivity() {
     }
 
     private fun setCurrentWeight(list: List<WeightLog>?) {
-        if (list == null) {
+        if (list == null || list.isEmpty()) {
             weight_progress_layout.visibility = View.GONE
             return
         }
 
         list.let {
+            weight_progress_layout.visibility = View.VISIBLE
             val unit = settingsService.getWeightUnit()
             weight_progress_text_view.text = String.format("%.2f %s", if (unit.contentEquals(UNIT_KGS)) list.reversed()[0].weightInKgs else list.reversed()[0].weightInLbs, unit)
         }

@@ -26,4 +26,8 @@ class LogCollectionViewModel(private val logRepository: IDPTRepository): ViewMod
             return logRepository.deleteWeightLog(log)
         }
     }
+
+    fun deleteAllLogs() {
+        logRepository.deleteAllLogs()
+    }
 }
