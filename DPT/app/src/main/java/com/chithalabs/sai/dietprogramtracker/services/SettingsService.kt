@@ -16,6 +16,8 @@ import javax.inject.Singleton
     private val MULTIVITAMIN_GOAL_KEY = "multivitamin_goal_key"
     private val WEIGHT_UNIT_GOAL_KEY = "weight_unit_goal_key"
 
+    private val AD_KEY = "ad_key"
+
     fun getWaterGoal(): String {
         return String.format("%d", getShredPreferences().getLong(WATER_GOAL_KEY, DEFAULT_WATER_GOAL))
     }
@@ -34,6 +36,27 @@ import javax.inject.Singleton
 
     fun getWeightUnit(): String {
         return getShredPreferences().getString(WEIGHT_UNIT_GOAL_KEY, UNIT_KGS)
+    }
+
+    fun shouldShowAd(): Boolean {
+        return true
+        // return getShredPreferences().getInt(AD_KEY, 0) == 3
+    }
+
+    fun resetAdCounter() {
+        with (getShredPreferences().edit()) {
+            putInt(AD_KEY, 0)
+            apply()
+        }
+    }
+
+    fun incrementAdCounter() {
+        val counter = getShredPreferences().getInt(AD_KEY, 0)
+        with (getShredPreferences().edit()) {
+            putInt(AD_KEY, counter + 1)
+            apply()
+        }
+
     }
 
     fun saveSettings(waterGoal: Long, fatGoal: Long,

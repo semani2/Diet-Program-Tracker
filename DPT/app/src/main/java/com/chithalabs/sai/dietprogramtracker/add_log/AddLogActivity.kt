@@ -1,7 +1,9 @@
 package com.chithalabs.sai.dietprogramtracker.add_log
 
+import android.app.Activity
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.annotation.NonNull
@@ -278,6 +280,7 @@ class AddLogActivity : AppCompatActivity() {
                 )
                 addLogViewModel.addNewWeightLog(weightLog)
                 showToast(getString(R.string.str_weight_log_added))
+                setResult(Activity.RESULT_OK)
                 null
             }
             else -> {
@@ -288,6 +291,7 @@ class AddLogActivity : AppCompatActivity() {
         log?.let {
             addLogViewModel.addNewLog(it)
             showToast(getString(R.string.log_added))
+            setResult(Activity.RESULT_OK)
         }
         finish()
     }

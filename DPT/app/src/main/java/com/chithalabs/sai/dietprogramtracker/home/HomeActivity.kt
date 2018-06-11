@@ -1,6 +1,7 @@
 package com.chithalabs.sai.dietprogramtracker.home
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
@@ -22,7 +23,6 @@ import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 import android.app.DatePickerDialog
 import android.content.ActivityNotFoundException
-import android.content.DialogInterface
 import android.net.Uri
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
@@ -36,9 +36,11 @@ import com.chithalabs.sai.dietprogramtracker.data.room.ILog
 import com.chithalabs.sai.dietprogramtracker.log_details.LogDetailsActivity
 import com.chithalabs.sai.dietprogramtracker.services.SettingsService
 import com.chithalabs.sai.dietprogramtracker.weight_details.WeightDetailsActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.MobileAds
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 
@@ -64,12 +66,16 @@ class HomeActivity : AppCompatActivity() {
         loadLogs(String.format("%s-%s-%s", DECIMAL_FORMAT.format(dayOfMonth), DECIMAL_FORMAT.format(monthOfYear + 1), DECIMAL_FORMAT.format(year)))
     }
 
+    private lateinit var mFullPageAd: InterstitialAd
+
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
         (application as DPTApplication).getApplicationComponent().inject(this)
+
+        initAds()
 
         action_meal.setOnClickListener({ goToAddLog(FOOD) })
         action_fat.setOnClickListener({ goToAddLog(FAT) })
@@ -132,6 +138,16 @@ class HomeActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+
+    private fun initAds() {
+        MobileAds.initialize(this, ADMOB_APP_ID)
+        mFullPageAd = InterstitialAd(this)
+        mFullPageAd.adUnitId = SAMPLE_PULL_PAGE_ID
+        mFullPageAd.loadAd(AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build())
     }
 
     private fun showDeleteAllDialog() {
@@ -287,7 +303,7 @@ class HomeActivity : AppCompatActivity() {
         val intent = Intent(this, AddLogActivity::class.java)
         intent.putExtra(PARAM_LOG_TYPE, logType)
 
-        startActivity(intent)
+        startActivityForResult(intent, ADD_LOG_REQUEST_CODE)
     }
 
     private fun goToLogDetails(date:String, @LogType logType: String) {
@@ -301,6 +317,21 @@ class HomeActivity : AppCompatActivity() {
         intent.putExtra(PARAM_DATE, date)
 
         startActivity(intent)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            ADD_LOG_REQUEST_CODE -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    if (settingsService.shouldShowAd()) {
+                        if (mFullPageAd.isLoaded) mFullPageAd.show() else android.util.Log.d(TAG, "Full page ad wasn't loaded")
+                    } else {
+                        settingsService.incrementAdCounter()
+                    }
+                }
+            }
+            else -> super.onActivityResult(requestCode, resultCode, data)
+        }
     }
 
     private fun createHelperCallback(): ItemTouchHelper.Callback {

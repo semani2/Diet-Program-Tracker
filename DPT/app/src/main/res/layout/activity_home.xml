@@ -129,4 +129,6 @@
             app:fab_icon="@drawable/scale"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
 </android.support.constraint.ConstraintLayout>

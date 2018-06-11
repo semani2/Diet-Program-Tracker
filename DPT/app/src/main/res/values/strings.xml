@@ -44,7 +44,7 @@
     <string name="log_had_multivitamin">You took %1$.2f unit(s) of multivitamins.</string>
     <string name="log_desc_weight">Your weight is %1$.2f %2$s</string>
 
-    <string name="home_title_text">Hi Sai, Here is your progress for %1$s!</string>
+    <string name="home_title_text">Hi, Here is your progress for %1$s!</string>
     <string name="home_no_logs_today">You have not added any logs for today. Get started by clicking on the + icon.</string>
     <string name="home_no_logs">You have not added any logs for %1$s.</string>
 

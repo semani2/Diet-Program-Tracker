@@ -17,3 +17,9 @@ const val UNIT_LBS = "lbs"
 
 const val FEEDBACK_EMAIL = "chithalabs@gmail.com"
 const val FEEDBACK_SUBJECT = "I have some feedback regarding Buttery!"
+
+const val ADMOB_APP_ID = "ca-app-pub-6788901959276049~9729644469"
+const val ADMOB_FULL_PAGE_ID = "ca-app-pub-6788901959276049/7691666301"
+const val SAMPLE_PULL_PAGE_ID = "ca-app-pub-3940256099942544/1033173712"
+
+const val ADD_LOG_REQUEST_CODE = 0
