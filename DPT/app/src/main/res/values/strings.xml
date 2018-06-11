@@ -76,10 +76,12 @@
     <string name="str_your_weight">Your weight</string>
     <string name="str_no_weight_log">You have not logged your weight yet!</string>
 
-    <string name="weight_details_activity_title">Weight Log</string>
+    <string name="weight_details_activity_title">Weight Logs</string>
     <string name="str_kgs">Kgs</string>
     <string name="str_lbs">Lbs</string>
 
     <string name="str_sorry_no_mail">Sorry! you have no app to send out an email.</string>
     <string name="str_are_you_sure">Are you sure you want to delete all your data?</string>
+
+    <string name="str_log_details_title">%1$s logs on %2$s</string>
 </resources>

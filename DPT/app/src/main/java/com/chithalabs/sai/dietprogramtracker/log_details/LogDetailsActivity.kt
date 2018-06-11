@@ -75,7 +75,7 @@ class LogDetailsActivity : AppCompatActivity() {
             else -> getDrawable(R.drawable.ic_buttery_round)
         })
 
-        title = mLogType.capitalize() + " Progress on " + mDate
+        title = getString(R.string.str_log_details_title, mLogType.capitalize(), mDate)
 
         initRecyclerView()
 
@@ -101,7 +101,7 @@ class LogDetailsActivity : AppCompatActivity() {
             }
 
             listOfLogs.clear()
-            listOfLogs.addAll(it.toList())
+            listOfLogs.addAll(it.toList().reversed())
 
             log_details_recycler_view.layoutManager = LinearLayoutManager(this)
             toggleListVisibility(true)
