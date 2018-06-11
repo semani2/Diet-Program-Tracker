@@ -11,9 +11,10 @@ import com.chithalabs.sai.dietprogramtracker.*
 import com.chithalabs.sai.dietprogramtracker.data.room.ILog
 import com.chithalabs.sai.dietprogramtracker.data.room.Log
 import com.chithalabs.sai.dietprogramtracker.data.room.WeightLog
+import com.chithalabs.sai.dietprogramtracker.services.SettingsService
 import io.reactivex.subjects.PublishSubject
 
-class LogAdapter(private var logList: MutableList<ILog>): RecyclerView.Adapter<LogAdapter.LogViewHolder>(){
+class LogAdapter(private var logList: MutableList<ILog>, private var mSettingsService: SettingsService): RecyclerView.Adapter<LogAdapter.LogViewHolder>(){
     val mClickSubject: PublishSubject<ILog> = PublishSubject.create()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LogViewHolder {
@@ -66,7 +67,10 @@ class LogAdapter(private var logList: MutableList<ILog>): RecyclerView.Adapter<L
         }
         else if (log is WeightLog){
             holder.logTypeImageView.setImageDrawable(holder.logTypeImageView.context.getDrawable(R.drawable.scale))
-            holder.logDescTextView.text = holder.logDescTextView.context.getString(R.string.log_desc_weight, log.weightInKgs, "kgs")
+
+            val unit = mSettingsService.getWeightUnit()
+
+            holder.logDescTextView.text = holder.logDescTextView.context.getString(R.string.log_desc_weight, if (unit.contentEquals(UNIT_KGS)) log.weightInKgs else log.weightInLbs, unit)
             holder.logTimeStampTextView.text = String.format("%s, %s", log.date, log.time)
         }
     }

@@ -28,6 +28,7 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import android.text.TextUtils
 import android.view.ContextThemeWrapper
 import android.widget.EditText
+import android.widget.RadioButton
 import android.widget.Toast
 import com.chithalabs.sai.dietprogramtracker.data.room.ILog
 import com.chithalabs.sai.dietprogramtracker.log_details.LogDetailsActivity
@@ -151,6 +152,13 @@ class HomeActivity : AppCompatActivity() {
         view.findViewById<EditText>(R.id.multivitamin_goal_edit_text).setText(savedMVGoal)
         view.findViewById<EditText>(R.id.multivitamin_goal_edit_text).setSelection(savedMVGoal.length)
 
+        val savedUnit = settingsService.getWeightUnit()
+        if (savedUnit.contentEquals(UNIT_KGS)) {
+            view.findViewById<RadioButton>(R.id.settings_kg_radio_button).isChecked = true
+        } else {
+            view.findViewById<RadioButton>(R.id.settings_lb_radio_button).isChecked = true
+        }
+
         builder.setView(view)
                 .setTitle(getString(R.string.settings))
                 .setCancelable(false)
@@ -168,7 +176,9 @@ class HomeActivity : AppCompatActivity() {
                     val mvGoal = view.findViewById<EditText>(R.id.multivitamin_goal_edit_text).text.toString()
                     val finalMVGoal = if (TextUtils.isEmpty(limeGoal)) DEFAULT_MULTIVITAMIN_GOAL else mvGoal.toInt()
 
-                    settingsService.saveSettings(finalWaterGoal, finalFatGoal, finalLimeGoal, finalMVGoal)
+                    val weightUnit = if (view.findViewById<RadioButton>(R.id.settings_kg_radio_button).isChecked) UNIT_KGS else UNIT_LBS
+
+                    settingsService.saveSettings(finalWaterGoal, finalFatGoal, finalLimeGoal, finalMVGoal, weightUnit)
 
                     dialog.cancel()
                 })
@@ -200,7 +210,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        adapter = LogAdapter(listOfLogs)
+        adapter = LogAdapter(listOfLogs, settingsService)
         log_recycler_view.adapter = adapter
 
         ItemTouchHelper(createHelperCallback()).attachToRecyclerView(log_recycler_view)

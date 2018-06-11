@@ -2,10 +2,7 @@ package com.chithalabs.sai.dietprogramtracker.services
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.chithalabs.sai.dietprogramtracker.DEFAULT_FAT_GOAL
-import com.chithalabs.sai.dietprogramtracker.DEFAULT_LIME_GOAL
-import com.chithalabs.sai.dietprogramtracker.DEFAULT_MULTIVITAMIN_GOAL
-import com.chithalabs.sai.dietprogramtracker.DEFAULT_WATER_GOAL
+import com.chithalabs.sai.dietprogramtracker.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -17,6 +14,7 @@ import javax.inject.Singleton
     private val FAT_GOAL_KEY = "fat_goal_key"
     private val LIME_GOAL_KEY = "lime_goal_key"
     private val MULTIVITAMIN_GOAL_KEY = "multivitamin_goal_key"
+    private val WEIGHT_UNIT_GOAL_KEY = "weight_unit_goal_key"
 
     fun getWaterGoal(): String {
         return String.format("%d", getShredPreferences().getLong(WATER_GOAL_KEY, DEFAULT_WATER_GOAL))
@@ -34,13 +32,18 @@ import javax.inject.Singleton
         return getShredPreferences().getInt(MULTIVITAMIN_GOAL_KEY, DEFAULT_MULTIVITAMIN_GOAL)
     }
 
+    fun getWeightUnit(): String {
+        return getShredPreferences().getString(WEIGHT_UNIT_GOAL_KEY, UNIT_KGS)
+    }
+
     fun saveSettings(waterGoal: Long, fatGoal: Long,
-                     limeGoal: Int, multivitaminGoal: Int) {
+                     limeGoal: Int, multivitaminGoal: Int, weight_unit: String) {
         with (getShredPreferences().edit()) {
             putLong(WATER_GOAL_KEY, waterGoal)
             putLong(FAT_GOAL_KEY, fatGoal)
             putInt(LIME_GOAL_KEY, limeGoal)
             putInt(MULTIVITAMIN_GOAL_KEY, multivitaminGoal)
+            putString(WEIGHT_UNIT_GOAL_KEY, weight_unit)
             apply()
         }
     }

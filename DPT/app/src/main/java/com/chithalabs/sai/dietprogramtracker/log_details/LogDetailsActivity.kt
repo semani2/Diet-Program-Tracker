@@ -175,7 +175,7 @@ class LogDetailsActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        adapter = LogAdapter(listOfLogs)
+        adapter = LogAdapter(listOfLogs, settingsService)
         log_details_recycler_view.adapter = adapter
 
         ItemTouchHelper(createHelperCallback()).attachToRecyclerView(log_details_recycler_view)

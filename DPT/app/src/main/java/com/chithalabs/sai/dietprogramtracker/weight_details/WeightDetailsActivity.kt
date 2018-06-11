@@ -13,10 +13,12 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.View
 import android.widget.Toast
 import com.chithalabs.sai.dietprogramtracker.R
+import com.chithalabs.sai.dietprogramtracker.UNIT_KGS
 import com.chithalabs.sai.dietprogramtracker.adapters.LogAdapter
 import com.chithalabs.sai.dietprogramtracker.data.room.ILog
 import com.chithalabs.sai.dietprogramtracker.data.room.WeightLog
 import com.chithalabs.sai.dietprogramtracker.di.DPTApplication
+import com.chithalabs.sai.dietprogramtracker.services.SettingsService
 import com.chithalabs.sai.dietprogramtracker.viewmodel.WeightDetailsViewModel
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -32,6 +34,9 @@ class WeightDetailsActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewmodelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var settingsService: SettingsService
 
     private lateinit var viewmodel: WeightDetailsViewModel
     private lateinit var adapter: LogAdapter
@@ -85,7 +90,8 @@ class WeightDetailsActivity : AppCompatActivity() {
         }
 
         list.let {
-            weight_progress_text_view.text = String.format("%.2f kgs", list.reversed()[0].weightInKgs)
+            val unit = settingsService.getWeightUnit()
+            weight_progress_text_view.text = String.format("%.2f %s", if (unit.contentEquals(UNIT_KGS)) list.reversed()[0].weightInKgs else list.reversed()[0].weightInLbs, unit)
         }
     }
 
@@ -95,7 +101,7 @@ class WeightDetailsActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        adapter = LogAdapter(listOfLogs)
+        adapter = LogAdapter(listOfLogs, settingsService)
         weight_log_recycler_view.adapter = adapter
 
         ItemTouchHelper(createHelperCallback()).attachToRecyclerView(weight_log_recycler_view)
