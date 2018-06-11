@@ -21,7 +21,9 @@ import com.chithalabs.sai.dietprogramtracker.viewmodel.LogCollectionViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 import android.app.DatePickerDialog
+import android.content.ActivityNotFoundException
 import android.content.DialogInterface
+import android.net.Uri
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
@@ -121,7 +123,7 @@ class HomeActivity : AppCompatActivity() {
             }
 
             R.id.menu_send_feedback -> {
-                // TODO:: Not implemented
+                launchFeedbackIntent()
                 true
             }
             R.id.menu_clear_all_logs -> {
@@ -129,6 +131,19 @@ class HomeActivity : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun launchFeedbackIntent() {
+        val emailIntent = Intent(Intent.ACTION_SENDTO)
+        emailIntent.data = Uri.parse("mailto:")
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(FEEDBACK_EMAIL))
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, FEEDBACK_SUBJECT)
+
+        try {
+            startActivity(emailIntent)
+        } catch (e: ActivityNotFoundException) {
+            showToast(getString(R.string.str_sorry_no_mail))
         }
     }
 

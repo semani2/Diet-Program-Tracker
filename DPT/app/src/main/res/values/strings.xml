@@ -79,4 +79,6 @@
     <string name="weight_details_activity_title">Weight Log</string>
     <string name="str_kgs">Kgs</string>
     <string name="str_lbs">Lbs</string>
+
+    <string name="str_sorry_no_mail">Sorry! you have no app to send out an email.</string>
 </resources>

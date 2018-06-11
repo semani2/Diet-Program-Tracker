@@ -14,3 +14,6 @@ const val DEFAULT_MULTIVITAMIN_GOAL = 1
 
 const val UNIT_KGS = "kgs"
 const val UNIT_LBS = "lbs"
+
+const val FEEDBACK_EMAIL = "chithalabs@gmail.com"
+const val FEEDBACK_SUBJECT = "I have some feedback regarding Buttery!"
