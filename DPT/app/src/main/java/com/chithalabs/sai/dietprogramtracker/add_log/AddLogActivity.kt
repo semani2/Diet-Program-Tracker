@@ -39,6 +39,8 @@ class AddLogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_log)
 
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+
         if (intent != null && intent.hasExtra(PARAM_LOG_TYPE)) {
             mLogType = intent.getStringExtra(PARAM_LOG_TYPE)
         }

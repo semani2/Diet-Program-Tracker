@@ -51,6 +51,8 @@ class LogDetailsActivity : AppCompatActivity() {
 
         (application as DPTApplication).getApplicationComponent().inject(this)
 
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+
         if (intent != null && intent.hasExtra(PARAM_DATE) && intent.hasExtra(PARAM_LOG_TYPE)) {
             mDate = intent.getStringExtra(PARAM_DATE)
             mLogType = intent.getStringExtra(PARAM_LOG_TYPE)

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -12,9 +13,12 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.View
 import android.widget.Toast
+import com.chithalabs.sai.dietprogramtracker.PARAM_LOG_TYPE
 import com.chithalabs.sai.dietprogramtracker.R
 import com.chithalabs.sai.dietprogramtracker.UNIT_KGS
+import com.chithalabs.sai.dietprogramtracker.WEIGHT
 import com.chithalabs.sai.dietprogramtracker.adapters.LogAdapter
+import com.chithalabs.sai.dietprogramtracker.add_log.AddLogActivity
 import com.chithalabs.sai.dietprogramtracker.data.room.ILog
 import com.chithalabs.sai.dietprogramtracker.data.room.WeightLog
 import com.chithalabs.sai.dietprogramtracker.di.DPTApplication
@@ -45,12 +49,20 @@ class WeightDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weight_details)
 
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+
         (application as DPTApplication).getApplicationComponent().inject(this)
 
         viewmodel = ViewModelProviders.of(this, viewmodelFactory)
                 .get(WeightDetailsViewModel::class.java)
 
         title = getString(R.string.weight_details_activity_title)
+
+        add_weight_fab.setOnClickListener {
+            val intent = Intent(this, AddLogActivity::class.java)
+            intent.putExtra(PARAM_LOG_TYPE, WEIGHT)
+            startActivity(intent)
+        }
 
         initRecyclerView()
 
