@@ -163,9 +163,15 @@ class HomeActivity : AppCompatActivity() {
         MobileAds.initialize(this, ADMOB_APP_ID)
         mFullPageAd = InterstitialAd(this)
         mFullPageAd.adUnitId = BuildConfig.FULL_PAGE_AD
+
+        val adBuilder = getAdBuilder()
+        mFullPageAd.loadAd(adBuilder.build())
+    }
+
+    private fun getAdBuilder(): AdRequest.Builder {
         val adBuilder = AdRequest.Builder()
         if (BuildConfig.DEBUG) adBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-        mFullPageAd.loadAd(adBuilder.build())
+        return adBuilder
     }
 
     private fun showDeleteAllDialog() {
@@ -359,8 +365,13 @@ class HomeActivity : AppCompatActivity() {
                     if (settingsService.shouldShowAd()) {
                         if (mFullPageAd.isLoaded) {
                             mFullPageAd.show()
+                            mFullPageAd.loadAd(getAdBuilder().build())
+
                             settingsService.resetAdCounter()
-                        } else android.util.Log.d(TAG, "Full page ad wasn't loaded")
+                        } else {
+                            android.util.Log.d(TAG, "Full page ad wasn't loaded")
+                            settingsService.resetAdCounter()
+                        }
                     } else {
                         settingsService.incrementAdCounter()
                     }

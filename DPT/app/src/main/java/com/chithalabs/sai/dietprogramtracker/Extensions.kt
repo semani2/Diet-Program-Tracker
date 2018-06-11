@@ -36,7 +36,7 @@ fun EditText.isValidNumber(): Boolean {
     }
 }
 
-fun EditText.isValidWeight(): Boolean {
+fun EditText.isValidFloat(): Boolean {
     val v = this.text.toString().toFloatOrNull()
     return when (v) {
         null -> false

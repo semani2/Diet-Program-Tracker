@@ -41,23 +41,22 @@ import javax.inject.Singleton
     }
 
     fun shouldShowAd(): Boolean {
-        return getShredPreferences().getInt(AD_KEY, 1) % 3 == 0
+        return getShredPreferences().getInt(AD_KEY, 1) % 4 == 0
     }
 
     fun resetAdCounter() {
         with (getShredPreferences().edit()) {
-            putInt(AD_KEY, 0)
+            putInt(AD_KEY, 1)
             apply()
         }
     }
 
     fun incrementAdCounter() {
-        val counter = getShredPreferences().getInt(AD_KEY, 0)
+        val counter = getShredPreferences().getInt(AD_KEY, 1) + 1
         with (getShredPreferences().edit()) {
-            putInt(AD_KEY, counter + 1)
+            putInt(AD_KEY, counter)
             apply()
         }
-
     }
 
     fun saveName(name: String) {

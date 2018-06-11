@@ -3,7 +3,6 @@ package com.chithalabs.sai.dietprogramtracker.add_log
 import android.app.Activity
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.annotation.NonNull
@@ -16,7 +15,6 @@ import com.chithalabs.sai.dietprogramtracker.data.room.WeightLog
 import com.chithalabs.sai.dietprogramtracker.di.DPTApplication
 import com.chithalabs.sai.dietprogramtracker.viewmodel.AddLogViewModel
 import kotlinx.android.synthetic.main.activity_add_log.*
-import java.util.*
 import javax.inject.Inject
 
 class AddLogActivity : AppCompatActivity() {
@@ -228,7 +226,7 @@ class AddLogActivity : AppCompatActivity() {
                 )
             }
             LIME -> {
-                if (!add_log_how_edit_text.isValidNumber()) {
+                if (!add_log_how_edit_text.isValidFloat()) {
                     add_log_how_edit_text.error = getString(R.string.add_log_number_quantity_error)
                     add_log_how_edit_text.requestFocus()
                     return
@@ -259,7 +257,7 @@ class AddLogActivity : AppCompatActivity() {
             }
 
             WEIGHT -> {
-                if (!add_log_how_edit_text.isValidWeight()) {
+                if (!add_log_how_edit_text.isValidFloat()) {
                     add_log_how_edit_text.error = getString(R.string.add_log_weight_invalid)
                     add_log_how_edit_text.requestFocus()
                     return
