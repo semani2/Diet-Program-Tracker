@@ -39,8 +39,7 @@ import javax.inject.Singleton
     }
 
     fun shouldShowAd(): Boolean {
-        return true
-        // return getShredPreferences().getInt(AD_KEY, 0) == 3
+        return getShredPreferences().getInt(AD_KEY, 0) % 3 == 0
     }
 
     fun resetAdCounter() {

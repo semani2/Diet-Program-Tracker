@@ -144,10 +144,10 @@ class HomeActivity : AppCompatActivity() {
     private fun initAds() {
         MobileAds.initialize(this, ADMOB_APP_ID)
         mFullPageAd = InterstitialAd(this)
-        mFullPageAd.adUnitId = SAMPLE_PULL_PAGE_ID
-        mFullPageAd.loadAd(AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build())
+        mFullPageAd.adUnitId = BuildConfig.FULL_PAGE_AD
+        val adBuilder = AdRequest.Builder()
+        if (BuildConfig.DEBUG) adBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+        mFullPageAd.loadAd(adBuilder.build())
     }
 
     private fun showDeleteAllDialog() {

@@ -22,6 +22,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", 'FULL_PAGE_AD', '"ca-app-pub-6788901959276049/7691666301"'
+        }
+        debug {
+            minifyEnabled false
+            buildConfigField "String", 'FULL_PAGE_AD', '"ca-app-pub-3940256099942544/1033173712"'
         }
     }
 }
