@@ -324,7 +324,10 @@ class HomeActivity : AppCompatActivity() {
             ADD_LOG_REQUEST_CODE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     if (settingsService.shouldShowAd()) {
-                        if (mFullPageAd.isLoaded) mFullPageAd.show() else android.util.Log.d(TAG, "Full page ad wasn't loaded")
+                        if (mFullPageAd.isLoaded) {
+                            mFullPageAd.show()
+                            settingsService.resetAdCounter()
+                        } else android.util.Log.d(TAG, "Full page ad wasn't loaded")
                     } else {
                         settingsService.incrementAdCounter()
                     }
