@@ -206,6 +206,10 @@ class HomeActivity : AppCompatActivity() {
             view.findViewById<RadioButton>(R.id.settings_lb_radio_button).isChecked = true
         }
 
+        val savedName = settingsService.getName()
+        view.findViewById<EditText>(R.id.settings_name_edit_text).setText(savedName)
+        view.findViewById<EditText>(R.id.settings_name_edit_text).setSelection(savedName.length)
+
         builder.setView(view)
                 .setTitle(getString(R.string.settings))
                 .setCancelable(false)
@@ -225,13 +229,24 @@ class HomeActivity : AppCompatActivity() {
 
                     val weightUnit = if (view.findViewById<RadioButton>(R.id.settings_kg_radio_button).isChecked) UNIT_KGS else UNIT_LBS
 
-                    settingsService.saveSettings(finalWaterGoal, finalFatGoal, finalLimeGoal, finalMVGoal, weightUnit)
+                    val updatedName = view.findViewById<EditText>(R.id.settings_name_edit_text).text.toString()
+
+                    settingsService.saveSettings(finalWaterGoal, finalFatGoal, finalLimeGoal, finalMVGoal, weightUnit, updatedName)
+
+                    refreshTitle()
 
                     dialog.cancel()
                 })
                 .setNegativeButton(R.string.settings_cancel, { dialog, _ -> dialog.cancel() })
         val dialog = builder.create()
         dialog.show()
+    }
+
+    private fun refreshTitle() {
+        val isToday = mDate.contentEquals(Date().dptDate())
+
+        title_text_view.text = if (isToday) getString(R.string.home_title_text, settingsService.getName(), getString(R.string.str_today))
+        else getString(R.string.home_title_text, settingsService.getName(), mDate)
     }
 
     private fun showDatePicker() {
@@ -250,8 +265,8 @@ class HomeActivity : AppCompatActivity() {
 
         val isToday = date.contentEquals(Date().dptDate())
 
-        title_text_view.text = if (isToday) getString(R.string.home_title_text, getString(R.string.str_today))
-        else getString(R.string.home_title_text, date)
+        title_text_view.text = if (isToday) getString(R.string.home_title_text, settingsService.getName(), getString(R.string.str_today))
+        else getString(R.string.home_title_text, settingsService.getName(), date)
 
         add_fab.visibility = if (isToday) View.VISIBLE else View.GONE
     }

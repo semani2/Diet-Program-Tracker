@@ -14,25 +14,32 @@
             android:name=".home.HomeActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".add_log.AddLogActivity"
             android:configChanges="orientation|keyboardHidden"
             android:parentActivityName=".home.HomeActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".log_details.LogDetailsActivity"
+        <activity
+            android:name=".log_details.LogDetailsActivity"
             android:parentActivityName=".home.HomeActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".weight_details.WeightDetailsActivity"
+        <activity
+            android:name=".weight_details.WeightDetailsActivity"
             android:parentActivityName=".home.HomeActivity"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".WelcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/WelcomeActivityTheme"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

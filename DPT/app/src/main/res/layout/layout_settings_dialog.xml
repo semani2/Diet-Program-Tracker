@@ -8,6 +8,42 @@
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_profile_settings"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/str_name"
+            android:layout_weight="0.3"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/settings_name_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:maxEms="5"
+            android:maxLines="2"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_goal_settings"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -89,6 +125,14 @@
             android:layout_weight="0.3"
             android:maxEms="3"/>
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_weight_settings"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

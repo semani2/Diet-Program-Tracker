@@ -15,6 +15,8 @@ import javax.inject.Singleton
     private val LIME_GOAL_KEY = "lime_goal_key"
     private val MULTIVITAMIN_GOAL_KEY = "multivitamin_goal_key"
     private val WEIGHT_UNIT_GOAL_KEY = "weight_unit_goal_key"
+    private val NAME_KEY = "name_key"
+    private val WELCOME_KEY = "welcome_key"
 
     private val AD_KEY = "ad_key"
 
@@ -39,7 +41,7 @@ import javax.inject.Singleton
     }
 
     fun shouldShowAd(): Boolean {
-        return getShredPreferences().getInt(AD_KEY, 0) % 3 == 0
+        return getShredPreferences().getInt(AD_KEY, 1) % 3 == 0
     }
 
     fun resetAdCounter() {
@@ -58,14 +60,38 @@ import javax.inject.Singleton
 
     }
 
+    fun saveName(name: String) {
+        with (getShredPreferences().edit()) {
+            putString(NAME_KEY, name)
+            apply()
+        }
+    }
+
+    fun getName(): String {
+        return getShredPreferences().getString(NAME_KEY, "")
+    }
+
+    fun shouldShowWelcome(): Boolean {
+        return getShredPreferences().getBoolean(WELCOME_KEY, true)
+    }
+
+    fun welcomeDisplayedToUser() {
+        with (getShredPreferences().edit()) {
+            putBoolean(WELCOME_KEY, false)
+            apply()
+        }
+    }
+
     fun saveSettings(waterGoal: Long, fatGoal: Long,
-                     limeGoal: Int, multivitaminGoal: Int, weight_unit: String) {
+                     limeGoal: Int, multivitaminGoal: Int,
+                     weight_unit: String, name: String) {
         with (getShredPreferences().edit()) {
             putLong(WATER_GOAL_KEY, waterGoal)
             putLong(FAT_GOAL_KEY, fatGoal)
             putInt(LIME_GOAL_KEY, limeGoal)
             putInt(MULTIVITAMIN_GOAL_KEY, multivitaminGoal)
             putString(WEIGHT_UNIT_GOAL_KEY, weight_unit)
+            putString(NAME_KEY, name)
             apply()
         }
     }

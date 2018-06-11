@@ -44,7 +44,7 @@
     <string name="log_had_multivitamin">You took %1$.2f unit(s) of multivitamins.</string>
     <string name="log_desc_weight">Your weight is %1$.2f %2$s</string>
 
-    <string name="home_title_text">Hi, Here is your progress for %1$s!</string>
+    <string name="home_title_text">Hi %1$s, Here is your progress for %2$s!</string>
     <string name="home_no_logs_today">You have not added any logs for today. Get started by clicking on the + icon.</string>
     <string name="home_no_logs">You have not added any logs for %1$s.</string>
 
@@ -86,4 +86,16 @@
     <string name="str_log_details_title">%1$s logs on %2$s</string>
 
     <string name="str_goal_reached">Goal reached</string>
+    <string name="str_hello_welcome_to_buttery">Hello, Welcome to Buttery</string>
+    <string name="str_buttery_introduction">Buttery is the most easy to use, diet program tracker.</string>
+    <string name="str_it_helps_track_your">It helps track your Weight, Meals, Water intake, Fat Intake, Multivitamins and Citrus intake.</string>
+    <string name="str_enter_your_name">Enter your name</string>
+    <string name="str_let_s_get_started">Let\'s get started</string>
+
+    <string name="str_please_enter_a_valid_name">Please enter a valid name</string>
+    <string name="str_welcome_name">Welcome %1$s!</string>
+    <string name="str_name">Name</string>
+    <string name="str_profile_settings">Profile settings</string>
+    <string name="str_goal_settings">Goal settings</string>
+    <string name="str_weight_settings">Weight settings</string>
 </resources>
