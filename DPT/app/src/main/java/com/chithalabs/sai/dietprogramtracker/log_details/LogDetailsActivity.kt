@@ -118,7 +118,7 @@ class LogDetailsActivity : AppCompatActivity() {
             }
             WATER -> {
                 progress_layout.visibility = View.VISIBLE
-                val totalQuantity = String.format("%s ml", settingsService.getWaterGoal())
+                val totalQuantity = String.format("%d ml", settingsService.getWaterGoal())
                 var progress = 0f
 
                 list?.let {
@@ -127,10 +127,11 @@ class LogDetailsActivity : AppCompatActivity() {
                     }
                 }
                 progress_text_view.text = String.format("%.2f ml / %s", progress, totalQuantity)
+                if (progress == settingsService.getWaterGoal().toFloat()) progress_title_text_view.text = getString(R.string.str_goal_reached)
             }
             FAT -> {
                 progress_layout.visibility = View.VISIBLE
-                val totalQuantity = String.format("%s mg", settingsService.getFatGoal())
+                val totalQuantity = String.format("%d mg", settingsService.getFatGoal())
                 var progress = 0f
 
                 list?.let {
@@ -139,6 +140,7 @@ class LogDetailsActivity : AppCompatActivity() {
                     }
                 }
                 progress_text_view.text = String.format("%.2f mg / %s", progress, totalQuantity)
+                if (progress == settingsService.getFatGoal().toFloat()) progress_title_text_view.text = getString(R.string.str_goal_reached)
             }
             LIME -> {
                 progress_layout.visibility = View.VISIBLE
@@ -151,6 +153,8 @@ class LogDetailsActivity : AppCompatActivity() {
                     }
                 }
                 progress_text_view.text = String.format("%.2f / %s", progress, totalQuantity)
+
+                if (progress == settingsService.getLimeGoal().toFloat()) progress_title_text_view.text = getString(R.string.str_goal_reached)
             }
             MULTIVITAMINS -> {
                 progress_layout.visibility = View.VISIBLE
@@ -163,6 +167,8 @@ class LogDetailsActivity : AppCompatActivity() {
                     }
                 }
                 progress_text_view.text = String.format("%d / %s", progress, totalQuantity)
+
+                if (progress == settingsService.getMultiVitaminGoal()) progress_title_text_view.text = getString(R.string.str_goal_reached)
             }
         }
     }

@@ -40,7 +40,8 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/str_goal_progress"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="28sp" />
+            android:textSize="28sp"
+            android:id="@+id/progress_title_text_view"/>
 
         <TextView
             android:id="@+id/progress_text_view"

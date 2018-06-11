@@ -84,4 +84,6 @@
     <string name="str_are_you_sure">Are you sure you want to delete all your data?</string>
 
     <string name="str_log_details_title">%1$s logs on %2$s</string>
+
+    <string name="str_goal_reached">Goal reached</string>
 </resources>

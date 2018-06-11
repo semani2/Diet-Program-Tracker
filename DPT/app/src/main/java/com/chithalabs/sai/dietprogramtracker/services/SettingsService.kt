@@ -18,12 +18,12 @@ import javax.inject.Singleton
 
     private val AD_KEY = "ad_key"
 
-    fun getWaterGoal(): String {
-        return String.format("%d", getShredPreferences().getLong(WATER_GOAL_KEY, DEFAULT_WATER_GOAL))
+    fun getWaterGoal(): Long {
+        return getShredPreferences().getLong(WATER_GOAL_KEY, DEFAULT_WATER_GOAL)
     }
 
-    fun getFatGoal(): String {
-        return String.format("%d", getShredPreferences().getLong(FAT_GOAL_KEY, DEFAULT_FAT_GOAL))
+    fun getFatGoal(): Long {
+        return getShredPreferences().getLong(FAT_GOAL_KEY, DEFAULT_FAT_GOAL)
     }
 
     fun getLimeGoal(): Int {

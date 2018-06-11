@@ -183,11 +183,11 @@ class HomeActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(ContextThemeWrapper(this, android.R.style.Theme_Material_Light_Dialog))
 
         val view = layoutInflater.inflate(R.layout.layout_settings_dialog, null)
-        val savedWaterGoal = settingsService.getWaterGoal()
+        val savedWaterGoal = String.format("%d", settingsService.getWaterGoal())
         view.findViewById<EditText>(R.id.water_goal_edit_text).setText(savedWaterGoal)
         view.findViewById<EditText>(R.id.water_goal_edit_text).setSelection(savedWaterGoal.length)
 
-        val savedFatGoal = settingsService.getFatGoal()
+        val savedFatGoal = String.format("%d", settingsService.getFatGoal())
         view.findViewById<EditText>(R.id.fat_goal_edit_text).setText(savedFatGoal)
         view.findViewById<EditText>(R.id.fat_goal_edit_text).setSelection(savedFatGoal.length)
 
