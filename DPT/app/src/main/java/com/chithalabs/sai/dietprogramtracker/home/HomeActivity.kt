@@ -132,12 +132,30 @@ class HomeActivity : AppCompatActivity() {
                 launchFeedbackIntent()
                 true
             }
+
+            R.id.menu_faq -> {
+                showFAQDialog()
+                true
+            }
+
             R.id.menu_clear_all_logs -> {
                 showDeleteAllDialog()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showFAQDialog() {
+        val builder = AlertDialog.Builder(ContextThemeWrapper(this, android.R.style.Theme_Material_Light_Dialog))
+
+        val view = layoutInflater.inflate(R.layout.layout_faq_dialog, null)
+        builder.setView(view)
+                .setCancelable(true)
+                .setTitle(getString(R.string.str_faq))
+
+        val dialog = builder.create()
+        dialog.show()
     }
 
 

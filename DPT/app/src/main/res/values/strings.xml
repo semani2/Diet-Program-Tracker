@@ -98,4 +98,16 @@
     <string name="str_profile_settings">Profile settings</string>
     <string name="str_goal_settings">Goal settings</string>
     <string name="str_weight_settings">Weight settings</string>
+    <string name="str_faq">Frequently Asked Questions</string>
+    <string name="str_how_weight">How to log and find my weight?</string>
+    <string name="faq_my_weight">You can log and check your weight by opening the menu (click the 3 dot icon) and clicking the My Weight option.</string>
+    <string name="faq_daily_goals_que">How to change my daily goals?</string>
+    <string name="faq_goals_answer">All your daily goals for water, fat, multivitamins and citrus can be edited in the settings. You can get to settings by opening the menu (click the three dot icon) and clicking on settings.</string>
+    <string name="faq_calendar_que">I am unable to find yesterday\'s logs. Are they lost?</string>
+    <string name="faq_calendar_answer">All your daily logs are stored permanently on your device. You can view them by clicking on the calendar icon on the toolbar and selecting the date for which you want to view your logs.</string>
+    <string name="faq_delete_que">I entered an incorrect log? How do I delete it?</string>
+    <string name="faq_delete_answer">Don\'t worry! We all make mistakes. Find your incorrect entry and just swipe to the right or left. It is deleted.</string>
+    <string name="menu_faq">FAQ</string>
+    <string name="faq_more_questions">If you still have a question or need help with something. Write us your query using the Send Feedback option on the menu.</string>
+    <string name="welcome_faq">PS: If you need help using Buttery check out the FAQs section on the menu or write us your query using the Send Feedback option.</string>
 </resources>
