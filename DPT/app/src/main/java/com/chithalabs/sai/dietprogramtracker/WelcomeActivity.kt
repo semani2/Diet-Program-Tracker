@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import com.chithalabs.sai.dietprogramtracker.di.DPTApplication
 import com.chithalabs.sai.dietprogramtracker.home.HomeActivity
+import com.chithalabs.sai.dietprogramtracker.services.AnalyticsService
 import com.chithalabs.sai.dietprogramtracker.services.SettingsService
 import kotlinx.android.synthetic.main.activity_welcome.*
 import javax.inject.Inject
@@ -13,6 +14,8 @@ import javax.inject.Inject
 class WelcomeActivity : AppCompatActivity() {
 
     @Inject lateinit var mSettingsService: SettingsService
+
+    @Inject lateinit var mAnalyticsService: AnalyticsService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,8 @@ class WelcomeActivity : AppCompatActivity() {
 
             mSettingsService.saveName(name)
             mSettingsService.welcomeDisplayedToUser()
+
+            mAnalyticsService.logEventSignUp()
 
             goHome()
 

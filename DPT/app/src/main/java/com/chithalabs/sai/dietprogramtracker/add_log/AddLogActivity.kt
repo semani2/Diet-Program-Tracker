@@ -13,6 +13,7 @@ import android.view.MenuItem
 import com.chithalabs.sai.dietprogramtracker.*
 import com.chithalabs.sai.dietprogramtracker.data.room.WeightLog
 import com.chithalabs.sai.dietprogramtracker.di.DPTApplication
+import com.chithalabs.sai.dietprogramtracker.services.AnalyticsService
 import com.chithalabs.sai.dietprogramtracker.viewmodel.AddLogViewModel
 import kotlinx.android.synthetic.main.activity_add_log.*
 import javax.inject.Inject
@@ -20,6 +21,8 @@ import javax.inject.Inject
 class AddLogActivity : AppCompatActivity() {
 
     @Inject lateinit var viewmodelFactory: ViewModelProvider.Factory
+
+    @Inject lateinit var analyticsService: AnalyticsService
 
     private lateinit var addLogViewModel : AddLogViewModel
 
@@ -277,6 +280,7 @@ class AddLogActivity : AppCompatActivity() {
                         weightInLbs = if (kg_radio_button.isChecked) convertedWeight else enteredWeight
                 )
                 addLogViewModel.addNewWeightLog(weightLog)
+                analyticsService.logEventLogAdded(mLogType)
                 showToast(getString(R.string.str_weight_log_added))
                 setResult(Activity.RESULT_OK)
                 null
@@ -288,7 +292,8 @@ class AddLogActivity : AppCompatActivity() {
 
         log?.let {
             addLogViewModel.addNewLog(it)
-            showToast(getString(R.string.log_added))
+            analyticsService.logEventLogAdded(mLogType)
+            showToast(getString(R.string.log_added, mLogType))
             setResult(Activity.RESULT_OK)
         }
         finish()

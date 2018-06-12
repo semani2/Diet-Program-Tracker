@@ -20,6 +20,7 @@ import com.chithalabs.sai.dietprogramtracker.add_log.AddLogActivity
 import com.chithalabs.sai.dietprogramtracker.data.room.ILog
 import com.chithalabs.sai.dietprogramtracker.data.room.Log
 import com.chithalabs.sai.dietprogramtracker.di.DPTApplication
+import com.chithalabs.sai.dietprogramtracker.services.AnalyticsService
 import com.chithalabs.sai.dietprogramtracker.services.SettingsService
 import com.chithalabs.sai.dietprogramtracker.viewmodel.LogDetailsViewModel
 import com.google.android.gms.ads.AdRequest
@@ -44,6 +45,8 @@ class LogDetailsActivity : AppCompatActivity() {
 
     @Inject
     lateinit var settingsService: SettingsService
+
+    @Inject lateinit var analyticsService: AnalyticsService
 
     private lateinit var viewmodel: LogDetailsViewModel
     private lateinit var adapter: LogAdapter
@@ -258,9 +261,9 @@ class LogDetailsActivity : AppCompatActivity() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
                 val position = viewHolder.adapterPosition
                 Completable.fromAction({
-                    viewmodel.deleteLogItem(
-                            listOfLogs[position]
-                    )
+                    val log: ILog = listOfLogs[position]
+                    viewmodel.deleteLogItem(log)
+                    analyticsService.logEventLogDeleted()
                 })
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())

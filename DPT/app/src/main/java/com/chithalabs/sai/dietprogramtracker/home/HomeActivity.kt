@@ -34,6 +34,7 @@ import android.widget.RadioButton
 import android.widget.Toast
 import com.chithalabs.sai.dietprogramtracker.data.room.ILog
 import com.chithalabs.sai.dietprogramtracker.log_details.LogDetailsActivity
+import com.chithalabs.sai.dietprogramtracker.services.AnalyticsService
 import com.chithalabs.sai.dietprogramtracker.services.SettingsService
 import com.chithalabs.sai.dietprogramtracker.weight_details.WeightDetailsActivity
 import com.google.android.gms.ads.AdRequest
@@ -56,6 +57,8 @@ class HomeActivity : AppCompatActivity() {
 
     @Inject
     lateinit var settingsService: SettingsService
+
+    @Inject lateinit var analyticsService: AnalyticsService
 
     private lateinit var viewmodel: LogCollectionViewModel
     private lateinit var adapter: LogAdapter
@@ -121,6 +124,8 @@ class HomeActivity : AppCompatActivity() {
             }
 
             R.id.menu_log_weight -> {
+                analyticsService.logEventMyWeightOpened()
+
                 val intent = Intent(this, WeightDetailsActivity::class.java)
                 startActivity(intent)
                 true
@@ -159,6 +164,8 @@ class HomeActivity : AppCompatActivity() {
 
         val dialog = builder.create()
         dialog.show()
+
+        analyticsService.logEventFAQOpened()
     }
 
 
@@ -183,6 +190,7 @@ class HomeActivity : AppCompatActivity() {
         builder.setCancelable(false)
         builder.setPositiveButton(android.R.string.ok, { dialog, _ ->
             viewmodel.deleteAllLogs()
+            analyticsService.logEventClearAllLogs()
             dialog.dismiss()
         })
         builder.setNegativeButton(android.R.string.cancel, { dialog, _ ->
@@ -261,6 +269,8 @@ class HomeActivity : AppCompatActivity() {
                     settingsService.saveSettings(finalWaterGoal, finalFatGoal, finalLimeGoal, finalMVGoal, weightUnit, updatedName)
 
                     refreshTitle()
+
+                    analyticsService.logEventSettingsChanged()
 
                     dialog.cancel()
                 })

@@ -20,6 +20,7 @@ import com.chithalabs.sai.dietprogramtracker.add_log.AddLogActivity
 import com.chithalabs.sai.dietprogramtracker.data.room.ILog
 import com.chithalabs.sai.dietprogramtracker.data.room.WeightLog
 import com.chithalabs.sai.dietprogramtracker.di.DPTApplication
+import com.chithalabs.sai.dietprogramtracker.services.AnalyticsService
 import com.chithalabs.sai.dietprogramtracker.services.SettingsService
 import com.chithalabs.sai.dietprogramtracker.viewmodel.WeightDetailsViewModel
 import com.google.android.gms.ads.AdRequest
@@ -39,6 +40,9 @@ class WeightDetailsActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewmodelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var analyticsService: AnalyticsService
 
     @Inject
     lateinit var settingsService: SettingsService
@@ -181,6 +185,7 @@ class WeightDetailsActivity : AppCompatActivity() {
                     viewmodel.deleteWeightLog(
                             listOfLogs[position] as WeightLog
                     )
+                    analyticsService.logEventLogDeleted()
                 })
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())

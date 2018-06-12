@@ -26,7 +26,7 @@
     <string name="add_log_weight_title">What is your weight?</string>
 
     <string name="add_new_log">Add new log</string>
-    <string name="log_added">Yay! log added successfully!</string>
+    <string name="log_added">Yay! Your %1$s log has been added.</string>
 
     <string name="add_log_food_error">Please add a valid food item.</string>
     <string name="add_log_fat_error">Please enter a valid fat source</string>
@@ -72,7 +72,7 @@
     <string name="str_kilograms_kg">Kilograms (kgs)</string>
     <string name="str_pounds_lbs">Pounds (lbs)</string>
 
-    <string name="str_weight_log_added">Yay! Weight log added.</string>
+    <string name="str_weight_log_added">Yay! You have logged your weight.</string>
     <string name="str_your_weight">Your weight</string>
     <string name="str_no_weight_log">You have not logged your weight yet!</string>
 
