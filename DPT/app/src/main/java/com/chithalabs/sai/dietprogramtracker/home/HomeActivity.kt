@@ -146,12 +146,29 @@ class HomeActivity : AppCompatActivity() {
                 true
             }
 
+            R.id.menu_licenses -> {
+                showLicensesDialog()
+                true
+            }
+
             R.id.menu_clear_all_logs -> {
                 showDeleteAllDialog()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showLicensesDialog() {
+        val builder = AlertDialog.Builder(ContextThemeWrapper(this, android.R.style.Theme_Material_Light_Dialog))
+
+        val view = layoutInflater.inflate(R.layout.layout_licenses_dialog, null)
+        builder.setView(view)
+                .setCancelable(true)
+                .setTitle(getString(R.string.str_licenses))
+
+        val dialog = builder.create()
+        dialog.show()
     }
 
     private fun showFAQDialog() {

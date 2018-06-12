@@ -22,7 +22,7 @@ android {
         applicationId "com.chithalabs.sai.dietprogramtracker"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 1
+        versionCode 4 // beta
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -30,12 +30,19 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", 'FULL_PAGE_AD', '"ca-app-pub-6788901959276049/7691666301"'
+            buildConfigField "String", 'FULL_PAGE_AD_HOME', '"ca-app-pub-6788901959276049/7691666301"'
+            buildConfigField "String", 'FULL_PAGE_AD_WEIGHT', '"ca-app-pub-6788901959276049/8389013763"'
+            buildConfigField "String", 'FULL_PAGE_AD_LOG', '"ca-app-pub-6788901959276049/8033790542"'
+            buildConfigField "String", 'ADMOB_APP_ID', '"ca-app-pub-6788901959276049~9729644469"'
+
             signingConfig signingConfigs.config
         }
         debug {
             minifyEnabled false
-            buildConfigField "String", 'FULL_PAGE_AD', '"ca-app-pub-3940256099942544/1033173712"'
+            buildConfigField "String", 'FULL_PAGE_AD_HOME', '"ca-app-pub-3940256099942544/1033173712"'
+            buildConfigField "String", 'FULL_PAGE_AD_WEIGHT', '"ca-app-pub-3940256099942544/1033173712"'
+            buildConfigField "String", 'FULL_PAGE_AD_LOG', '"ca-app-pub-3940256099942544/1033173712"'
+            buildConfigField "String", 'ADMOB_APP_ID', '"ca-app-pub-6788901959276049~9729644469"'
         }
     }
 }

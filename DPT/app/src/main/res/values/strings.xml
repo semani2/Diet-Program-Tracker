@@ -110,4 +110,16 @@
     <string name="menu_faq">FAQ</string>
     <string name="faq_more_questions">If you still have a question or need help with something. Write us your query using the Send Feedback option on the menu.</string>
     <string name="welcome_faq">PS: If you need help using Buttery check out the FAQs section on the menu or write us your query using the Send Feedback option.</string>
+    <string name="str_crashlytics">Crashlytics</string>
+    <string name="str_crashlytics_inc">Crashlytics, Inc.</string>
+    <string name="str_kotlin">Kotlin</string>
+    <string name="str_jetbrains_s_r_o">JetBrains s.r.o.</string>
+    <string name="str_rxandroid">RxAndroid</string>
+    <string name="the_rxandroid_authors">The RxAndroid authors</string>
+    <string name="str_netflix_inc">Netflix, Inc.</string>
+    <string name="str_rxjava">RxJava</string>
+    <string name="str_icons">Icons</string>
+    <string name="str_icons_freepik">Icon made by Freepik from www.flaticon.com</string>
+    <string name="str_icons_monkik">Icon made by Monkik from www.flaticon.com</string>
+    <string name="str_licenses">Licenses</string>
 </resources>
