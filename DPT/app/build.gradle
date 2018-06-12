@@ -9,6 +9,14 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'io.fabric'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'buttery_key'
+            keyPassword 'password'
+            storeFile file('/Users/sai.emani/Documents/DietProgramTracker/KeyStore/ButteryKeyStore')
+            storePassword 'password'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.chithalabs.sai.dietprogramtracker"
@@ -23,6 +31,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", 'FULL_PAGE_AD', '"ca-app-pub-6788901959276049/7691666301"'
+            signingConfig signingConfigs.config
         }
         debug {
             minifyEnabled false
@@ -32,10 +41,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
 
     // ViewModel and LiveData
@@ -52,7 +60,6 @@ dependencies {
     //Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.5'
 
@@ -70,9 +77,7 @@ dependencies {
     // Firebase
     implementation 'com.google.firebase:firebase-core:16.0.0'
     implementation 'com.google.firebase:firebase-ads:15.0.1'
-
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.3'
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

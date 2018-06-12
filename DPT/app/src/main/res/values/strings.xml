@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Buttery: Diet Tracker</string>
+    <string name="app_name">Buttery</string>
 
     <string name="add_log_what_did_u_eat">What did you eat?</string>
     <string name="add_log_what_did_u_drink">What did you drink?</string>

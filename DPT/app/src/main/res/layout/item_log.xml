@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/log_type_image_view"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             tools:src="@drawable/lime" />
 
@@ -40,7 +40,8 @@
                 tools:text="You drank 5 liters of water. What about one more line and one more."
                 android:gravity="end"
                 android:textColor="@color/colorPrimaryText"
-                android:ellipsize="middle" />
+                android:ellipsize="middle"
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/log_time_stamp_text_view"
