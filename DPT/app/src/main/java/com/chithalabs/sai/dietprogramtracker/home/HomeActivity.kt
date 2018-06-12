@@ -75,8 +75,6 @@ class HomeActivity : AppCompatActivity() {
 
         (application as DPTApplication).getApplicationComponent().inject(this)
 
-        initAds()
-
         action_meal.setOnClickListener({ goToAddLog(FOOD) })
         action_fat.setOnClickListener({ goToAddLog(FAT) })
         action_water.setOnClickListener({ goToAddLog(WATER) })
@@ -98,6 +96,11 @@ class HomeActivity : AppCompatActivity() {
                 .subscribe({ log -> goToLogDetails(mDate, (log as? Log)?.type ?: WEIGHT) })
 
         loadLogs(mDate)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initAds()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
@@ -160,9 +163,9 @@ class HomeActivity : AppCompatActivity() {
 
 
     private fun initAds() {
-        MobileAds.initialize(this, ADMOB_APP_ID)
+        MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID)
         mFullPageAd = InterstitialAd(this)
-        mFullPageAd.adUnitId = BuildConfig.FULL_PAGE_AD
+        mFullPageAd.adUnitId = BuildConfig.FULL_PAGE_AD_HOME
 
         val adBuilder = getAdBuilder()
         mFullPageAd.loadAd(adBuilder.build())
@@ -365,7 +368,6 @@ class HomeActivity : AppCompatActivity() {
                     if (settingsService.shouldShowAd()) {
                         if (mFullPageAd.isLoaded) {
                             mFullPageAd.show()
-                            mFullPageAd.loadAd(getAdBuilder().build())
 
                             settingsService.resetAdCounter()
                         } else {

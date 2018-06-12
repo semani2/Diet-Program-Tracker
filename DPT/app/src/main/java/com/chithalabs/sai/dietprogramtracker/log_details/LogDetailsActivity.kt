@@ -1,9 +1,11 @@
 package com.chithalabs.sai.dietprogramtracker.log_details
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -14,11 +16,15 @@ import android.view.View
 import android.widget.Toast
 import com.chithalabs.sai.dietprogramtracker.*
 import com.chithalabs.sai.dietprogramtracker.adapters.LogAdapter
+import com.chithalabs.sai.dietprogramtracker.add_log.AddLogActivity
 import com.chithalabs.sai.dietprogramtracker.data.room.ILog
 import com.chithalabs.sai.dietprogramtracker.data.room.Log
 import com.chithalabs.sai.dietprogramtracker.di.DPTApplication
 import com.chithalabs.sai.dietprogramtracker.services.SettingsService
 import com.chithalabs.sai.dietprogramtracker.viewmodel.LogDetailsViewModel
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.MobileAds
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -44,6 +50,8 @@ class LogDetailsActivity : AppCompatActivity() {
 
     private lateinit var mDate: String
     private lateinit var mLogType: String
+
+    private lateinit var mFullPageAd: InterstitialAd
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,9 +85,57 @@ class LogDetailsActivity : AppCompatActivity() {
 
         title = getString(R.string.str_log_details_title, mLogType.capitalize(), mDate)
 
+        add_log_fab.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, AddLogActivity::class.java)
+            intent.putExtra(PARAM_LOG_TYPE, mLogType)
+            startActivityForResult(intent, ADD_LOG_REQUEST_CODE)
+        })
+
         initRecyclerView()
 
         loadLogs(mDate, mLogType)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initAds()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            ADD_LOG_REQUEST_CODE -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    if (settingsService.shouldShowAd()) {
+                        if (mFullPageAd.isLoaded) {
+                            mFullPageAd.show()
+
+                            settingsService.resetAdCounter()
+                        } else {
+                            android.util.Log.d(TAG, "Full page ad wasn't loaded")
+                            settingsService.resetAdCounter()
+                        }
+                    } else {
+                        settingsService.incrementAdCounter()
+                    }
+                }
+            }
+            else -> super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+    private fun initAds() {
+        MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID)
+        mFullPageAd = InterstitialAd(this)
+        mFullPageAd.adUnitId = BuildConfig.FULL_PAGE_AD_HOME
+
+        val adBuilder = getAdBuilder()
+        mFullPageAd.loadAd(adBuilder.build())
+    }
+
+    private fun getAdBuilder(): AdRequest.Builder {
+        val adBuilder = AdRequest.Builder()
+        if (BuildConfig.DEBUG) adBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+        return adBuilder
     }
 
     private fun loadLogs(date: String, type: String) {
