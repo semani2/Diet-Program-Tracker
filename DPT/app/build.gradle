@@ -22,7 +22,7 @@ android {
         applicationId "com.chithalabs.sai.dietprogramtracker"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 4 // beta
+        versionCode 7 // beta
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
