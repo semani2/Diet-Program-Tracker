@@ -21,7 +21,7 @@
     <string name="add_log_liquid">Liquid</string>
     <string name="add_log_save">Save</string>
     <string name="add_log_water_hint">In ml&#8230;</string>
-    <string name="add_log_fat_hint_quantity">In mg&#8230;</string>
+    <string name="add_log_fat_hint_quantity">In grams&#8230;</string>
     <string name="add_log_weight">Weight</string>
     <string name="add_log_weight_title">What is your weight?</string>
 
@@ -31,13 +31,13 @@
     <string name="add_log_food_error">Please add a valid food item.</string>
     <string name="add_log_fat_error">Please enter a valid fat source</string>
     <string name="add_log_number_quantity_error">Please enter a valid quantity</string>
-    <string name="add_log_number_quantity_error_mg">Please enter a valid quantity in mg (milligrams)</string>
+    <string name="add_log_number_quantity_error_mg">Please enter a valid quantity in gms (grams)</string>
     <string name="add_log_number_quantity_error_ml">Please enter a valid quantity in ml (milliliters)</string>
     <string name="add_log_weight_invalid">Please enter your weight</string>
 
     <string name="log_desc_food">You ate %1$s.</string>
     <string name="log_desc_liquid">You drank %1$s.</string>
-    <string name="log_desc_had">You had %1$.2f ml of %2$s.</string>
+    <string name="log_desc_had">You had %1$.2f gms of %2$s.</string>
     <string name="log_desc_took">You took %1$.2f %2$s.</string>
     <string name="log_drank_water">You drank %1$.2f ml of water.</string>
     <string name="log_had_lime">You had %1$.2f lime / lemon.</string>

@@ -28,7 +28,7 @@ class AddLogActivity : AppCompatActivity() {
 
     private lateinit var mLogType: String
 
-    private val MG_UNIT = "mg"
+    private val GM_UNIT = "gms"
     private val ML_UNIT = "ml"
     private val WATER = "water"
     private val LIME = "lime"
@@ -199,7 +199,7 @@ class AddLogActivity : AppCompatActivity() {
                     return
                 }
 
-                if (!add_log_how_edit_text.isValidNumber()) {
+                if (!add_log_how_edit_text.isValidFloat()) {
                     add_log_how_edit_text.error = getString(R.string.add_log_number_quantity_error)
                     add_log_how_edit_text.requestFocus()
                     return
@@ -209,7 +209,7 @@ class AddLogActivity : AppCompatActivity() {
                         id = 0,
                         desc = add_log_what_edit_text.text.toString().trim(),
                         quantity = add_log_how_edit_text.text.toString().trim().toFloatOrNull(),
-                        unit = MG_UNIT,
+                        unit = GM_UNIT,
                         type = mLogType
                 )
             }

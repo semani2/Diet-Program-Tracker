@@ -88,11 +88,18 @@ class LogDetailsActivity : AppCompatActivity() {
 
         title = getString(R.string.str_log_details_title, mLogType.capitalize(), mDate)
 
-        add_log_fab.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, AddLogActivity::class.java)
-            intent.putExtra(PARAM_LOG_TYPE, mLogType)
-            startActivityForResult(intent, ADD_LOG_REQUEST_CODE)
-        })
+        if (mDate.contentEquals(Date().dptDate())) {
+            // It is today, show fab
+            add_log_fab.visible()
+            add_log_fab.setOnClickListener(View.OnClickListener {
+                val intent = Intent(this, AddLogActivity::class.java)
+                intent.putExtra(PARAM_LOG_TYPE, mLogType)
+                startActivityForResult(intent, ADD_LOG_REQUEST_CODE)
+            })
+        } else {
+            add_log_fab.gone()
+        }
+
 
         initRecyclerView()
 
@@ -190,7 +197,7 @@ class LogDetailsActivity : AppCompatActivity() {
             }
             FAT -> {
                 progress_layout.visibility = View.VISIBLE
-                val totalQuantity = String.format("%d mg", settingsService.getFatGoal())
+                val totalQuantity = String.format("%d gms", settingsService.getFatGoal())
                 var progress = 0f
 
                 list?.let {
@@ -198,7 +205,7 @@ class LogDetailsActivity : AppCompatActivity() {
                         progress += log.quantity!!
                     }
                 }
-                progress_text_view.text = String.format("%.2f mg / %s", progress, totalQuantity)
+                progress_text_view.text = String.format("%.2f gms / %s", progress, totalQuantity)
                 if (progress == settingsService.getFatGoal().toFloat()) progress_title_text_view.text = getString(R.string.str_goal_reached)
             }
             LIME -> {
